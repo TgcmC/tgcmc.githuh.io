@@ -1,0 +1,1021 @@
+<html lang="fr"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fiches Bac Français</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@300;400;500&amp;display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1410; --paper: #f5f0e8; --cream: #ede8dc;
+  --accent: #8b2e00; --accent-l: rgba(139,46,0,0.10);
+  --muted: #7a6f60; --border: #d4cdc0;
+  --hl1: rgba(255,200,50,0.45); --hl2: rgba(80,170,80,0.35);
+  --hl3: rgba(80,140,220,0.35); --hl4: rgba(210,80,140,0.35);
+  --sw: 33vw;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'IBM Plex Sans', sans-serif; background: var(--paper); color: var(--ink); height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
+
+/* HEADER */
+header { background: var(--ink); color: var(--paper); padding: 13px 24px; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; border-bottom: 3px solid var(--accent); }
+header h1 { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 400; letter-spacing: 0.03em; }
+header h1 em { color: #c0a080; }
+.hdr-r { display: flex; gap: 8px; align-items: center; }
+#sel-text { font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; background: rgba(255,255,255,0.08); color: var(--paper); border: 1px solid rgba(255,255,255,0.2); padding: 5px 9px; border-radius: 3px; cursor: pointer; outline: none; max-width: 220px; }
+#sel-text option { background: #1a1410; }
+.btn { font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.05em; padding: 6px 13px; border: none; border-radius: 3px; cursor: pointer; transition: all 0.15s; }
+.btn-a { background: var(--accent); color: #fff; }
+.btn-a:hover { background: #a03500; }
+.btn-g { background: rgba(255,255,255,0.1); color: var(--paper); border: 1px solid rgba(255,255,255,0.22); }
+.btn-g:hover { background: rgba(255,255,255,0.18); }
+
+/* LAYOUT */
+main { display: flex; flex: 1; overflow: hidden; }
+
+/* LEFT */
+#panel-left { width: var(--sw); min-width: 260px; background: var(--cream); border-right: 1px solid var(--border); display: flex; flex-direction: column; overflow: hidden; flex-shrink: 0; }
+.tab-bar { display: flex; border-bottom: 1px solid var(--border); padding: 0 18px; flex-shrink: 0; }
+.tab { font-family: 'IBM Plex Mono', monospace; font-size: 0.68rem; letter-spacing: 0.07em; padding: 8px 13px; cursor: pointer; color: var(--muted); border-bottom: 2px solid transparent; transition: all 0.15s; text-transform: uppercase; }
+.tab.on { color: var(--accent); border-bottom-color: var(--accent); }
+.tab:hover { color: var(--ink); }
+#read-list { overflow-y: auto; flex: 1; padding: 10px 0 24px; }
+#edit-wrap { display: none; flex-direction: column; overflow-y: auto; flex: 1; padding: 14px 13px 24px; }
+
+/* LABELS */
+.slabel { font-family: 'IBM Plex Mono', monospace; font-size: 0.63rem; font-weight: 500; letter-spacing: 0.13em; text-transform: uppercase; color: var(--muted); padding: 10px 18px 4px; }
+
+/* INTRO / CONCLU */
+.intro-card, .conclu-card { margin: 0 13px 6px; background: #fff; border: 1px solid var(--border); border-left: 4px solid var(--accent); border-radius: 0 4px 4px 0; padding: 11px 13px; }
+.intro-card h3, .conclu-card h3 { font-family: 'Playfair Display', serif; font-size: 0.84rem; font-weight: 700; color: var(--accent); margin-bottom: 5px; }
+.intro-card p, .conclu-card p { font-size: 0.77rem; line-height: 1.55; color: #3a3330; }
+
+/* AXIS HEADER */
+.mv-hdr { margin: 10px 13px 2px; padding: 7px 13px; background: var(--ink); color: var(--paper); border-radius: 3px; display: flex; align-items: baseline; gap: 8px; }
+.mv-num { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; color: #c0a080; letter-spacing: 0.08em; flex-shrink: 0; }
+.mv-name { font-family: 'Playfair Display', serif; font-size: 0.86rem; font-style: italic; flex: 1; }
+
+/* CITATION CARD */
+.cit-card { margin: 2px 13px; background: #fff; border: 1px solid var(--border); border-radius: 4px; padding: 9px 13px; cursor: pointer; transition: border-color 0.15s, box-shadow 0.15s; position: relative; }
+.cit-card:hover { border-color: var(--accent); box-shadow: 0 2px 8px rgba(0,0,0,0.07); }
+.cit-card.active { border-color: var(--accent); background: #fff8f4; box-shadow: 0 2px 12px rgba(139,46,0,0.13); }
+.cit-card .cdot { position: absolute; top: 9px; right: 9px; width: 7px; height: 7px; border-radius: 50%; }
+.cit-card .proc { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; font-weight: 500; color: var(--accent); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 4px; padding-right: 18px; }
+.cit-item { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.8rem; color: #4a3f35; line-height: 1.4; margin-bottom: 2px; }
+.interp { font-size: 0.77rem; color: var(--ink); line-height: 1.5; margin-top: 7px; padding: 6px 10px; background: var(--cream); border-left: 3px solid var(--accent); border-radius: 0 3px 3px 0; }
+
+/* RIGHT */
+#panel-right { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+.text-meta { padding: 12px 28px 10px; border-bottom: 1px solid var(--border); flex-shrink: 0; display: flex; align-items: baseline; gap: 14px; }
+.text-meta h2 { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; font-style: italic; }
+.text-meta span { font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; color: var(--muted); }
+#text-display { flex: 1; overflow-y: auto; padding: 26px 44px 40px 32px; font-family: 'Playfair Display', serif; font-size: 0.98rem; line-height: 1.95; color: #2a2520; }
+
+/* MARKS */
+mark { border-radius: 2px; padding: 1px 0; background: transparent; transition: background 0.18s; }
+mark.on.h1 { background: var(--hl1); }
+mark.on.h2 { background: var(--hl2); }
+mark.on.h3 { background: var(--hl3); }
+mark.on.h4 { background: var(--hl4); }
+mark.on { outline: none; }
+
+/* MODALS */
+.modal-bg { display: none; position: fixed; inset: 0; background: rgba(20,16,12,0.72); z-index: 100; align-items: center; justify-content: center; backdrop-filter: blur(2px); }
+.modal-bg.open { display: flex; }
+.modal { background: var(--paper); border: 1px solid var(--border); border-top: 4px solid var(--accent); border-radius: 4px; width: 680px; max-width: 96vw; max-height: 90vh; overflow-y: auto; padding: 26px 30px; position: relative; }
+.modal h2 { font-family: 'Playfair Display', serif; font-size: 1.15rem; margin-bottom: 18px; color: var(--accent); }
+.modal-x { position: absolute; top: 12px; right: 14px; background: none; border: none; font-size: 1.3rem; color: var(--muted); cursor: pointer; line-height: 1; }
+.modal-x:hover { color: var(--ink); }
+.fg { display: grid; gap: 13px; }
+.fr { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; }
+label { font-family: 'IBM Plex Mono', monospace; font-size: 0.68rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: 4px; }
+input, textarea, select.fs { width: 100%; font-family: 'IBM Plex Sans', sans-serif; font-size: 0.84rem; padding: 7px 11px; border: 1px solid var(--border); border-radius: 3px; background: #fff; color: var(--ink); outline: none; transition: border-color 0.15s; }
+input:focus, textarea:focus, select.fs:focus { border-color: var(--accent); }
+textarea { resize: vertical; min-height: 68px; }
+.ma { margin-top: 20px; display: flex; gap: 9px; justify-content: flex-end; }
+.btn-cancel { font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; padding: 6px 13px; background: #fff; color: var(--ink); border: 1px solid var(--border); border-radius: 3px; cursor: pointer; }
+.btn-cancel:hover { border-color: var(--muted); }
+
+/* EDIT PANEL */
+.esec { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); border-top: 1px solid var(--border); padding-top: 13px; margin: 16px 0 9px; }
+.erow { display: flex; align-items: flex-start; justify-content: space-between; padding: 7px 10px; background: #fff; border: 1px solid var(--border); border-radius: 3px; margin-bottom: 4px; gap: 8px; }
+.erow-l { flex: 1; min-width: 0; }
+.erow-acts { display: flex; gap: 3px; flex-shrink: 0; align-items: center; }
+.iBtn { background: none; border: none; cursor: pointer; padding: 3px 5px; font-size: 0.78rem; color: var(--muted); border-radius: 2px; transition: all 0.13s; line-height: 1; }
+.iBtn:hover { color: var(--accent); background: var(--accent-l); }
+.iBtn.del:hover { color: #c0392b; background: rgba(192,57,43,0.08); }
+.add-dashed { display: flex; align-items: center; gap: 5px; font-family: 'IBM Plex Mono', monospace; font-size: 0.67rem; color: var(--muted); background: none; border: 1px dashed var(--border); border-radius: 3px; padding: 6px 11px; cursor: pointer; width: 100%; transition: all 0.15s; margin-top: 4px; }
+.add-dashed:hover { color: var(--accent); border-color: var(--accent); background: var(--accent-l); }
+
+/* EXTRAIT ROWS */
+.ext-row { display: flex; gap: 6px; align-items: flex-start; }
+.ext-row textarea { flex: 1; font-family: 'IBM Plex Sans', sans-serif; font-size: 0.82rem; padding: 6px 10px; border: 1px solid var(--border); border-radius: 3px; resize: vertical; outline: none; min-height: 52px; background: #fff; }
+.ext-row textarea:focus { border-color: var(--accent); }
+.ext-del { background: none; border: none; color: var(--muted); cursor: pointer; font-size: 0.9rem; padding: 5px 3px; flex-shrink: 0; }
+.ext-del:hover { color: #c0392b; }
+
+/* MISC */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+.empty-hint { padding: 36px 20px; text-align: center; font-family: 'Playfair Display', serif; font-style: italic; color: var(--muted); font-size: 0.88rem; line-height: 1.6; }
+
+/* TOAST */
+#toast { display: none; position: fixed; bottom: 18px; right: 18px; background: var(--ink); color: var(--paper); padding: 9px 16px; border-radius: 4px; font-family: 'IBM Plex Mono', monospace; font-size: 0.73rem; z-index: 300; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Fiches Bac — <em>Analyse Linéare pour l'oral</em></h1>
+  <div class="hdr-r">
+    <select id="sel-text"><option value="mm67rf2gipoo">ONBAA Acte I Scène 2 — Musset</option><option value="mmaqpkcyu65r">ONBAA Acte II Scène 5 — Musset</option><option value="mmcb931vk8xa">ONBAA Acte III Scène 3 — Musset</option><option value="mmdel9vtvnv7">Les fausses confidences Acte II Scène 13 — Marivaux</option><option value="mmesnw43kuoc">Manon Lescaut - La rencontre — L'abbé Prévost</option><option value="mmexqzoc35o1">Manon Lescaut - La scène du parloir — L'abbé Prévost</option><option value="mmjm5n1zsutq">Manon Lescaut - L'enterrement de Manon — Musset</option></select>
+    <button class="btn btn-g" onclick="openModal('m-text',null)">+ Texte</button>
+    <button class="btn btn-g" onclick="doPrint()" title="Préparer une fiche à imprimer">🖨 Imprimer</button>
+    <button class="btn btn-a" onclick="doExport()">⬇ Exporter</button>
+  </div>
+</header>
+
+<main>
+  <div id="panel-left">
+    <div class="tab-bar">
+      <div class="tab" id="tab-lire" onclick="switchTab('lire')">Lire</div>
+      <div class="tab on" id="tab-edit" onclick="switchTab('edit')">Éditer</div>
+    </div>
+    <div id="read-list" style="display: none;"><div class="slabel">Introduction</div><div class="intro-card"><h3>Accroche</h3><p style="margin-bottom:8px">Le théâtre est le seul genre littéraire destiné à être joué et non lu. Au début du 19ème siècle, le chef de file du romantisme, Victor Hugo, théorise dans la préface de Cromwell une nouvelle esthétique théâtrale. Il prône l'abandon des règles classiques et l'alliance du sublime et du grotesque, afin de représenter la réalité dans son ensemble. En 1830, après l'échec cuisant de sa première mise en scène, Alfred de Musset prend une décision radicale : il continuera d'être dramaturge mais ses pièces ne seront pas jouées. Ainsi paraît On ne badine pas avec l'amour dans Le Théâtre dans un fauteuil, un proverbe aux forts accents de drame romantique mettant en scène les amours de Camille et Perdican, empêchées par leur orgueil et leur éducation. La scène 2 de l'acte I est la prolongation de la scène d'exposition. Le Baron annonce à ses fantoches ses projets de mariage pour Camille et Perdican. Leur rencontre est donc organisée dans cet extrait, que nous allons analyser.</p><h3>Problématique</h3><p>En quoi cette scène de retrouvailles permet de dessiner les portraits des protagonistes et d'installer la mésentente à l'origine du drame ?</p><h3 style="margin-top:8px">Plan</h3><p style="margin-bottom:3px"><strong>I.</strong> La rencontre amoureuse gâchée par Camille</p><p style="margin-bottom:3px"><strong>II.</strong> La profonde déception et l’orgueil piqué du baron</p><p style="margin-bottom:3px"><strong>III.</strong> Le Baron s'entretient avec Camille</p></div><div class="mv-hdr"><span class="mv-num">MOUVEMENT I</span><span class="mv-name">La rencontre amoureuse gâchée par Camille</span></div><div class="cit-card" data-id="mm67s4obhkn6">
+    <div class="cdot" style="background:#b8900a"></div>
+    <div class="proc">Didascalie</div>
+    <div class="cit-item">« (Perdican entre d'un côté, Camille de l'autre.) »</div>
+    <div class="interp">Les héros sont dorénavant opposé spatialement</div>
+  </div><div class="cit-card" data-id="mm67srpmq9c1">
+    <div class="cdot" style="background:#257a25"></div>
+    <div class="proc">Prise de parole</div>
+    <div class="cit-item">« Le Baron. - ( »</div>
+    <div class="interp">Le Baron parle en premier, il est le metteur en scène de la rencontre. Pour lui ce mariage est un retour sur investissement.</div>
+  </div><div class="cit-card" data-id="mm67vez4lxo1">
+    <div class="cdot" style="background:#1f50a0"></div>
+    <div class="proc">Répétition des marques de la 1ère personne</div>
+    <div class="cit-item">« mes enfants »</div><div class="cit-item">« ma chère »</div><div class="cit-item">« mon cher »</div><div class="cit-item">« embrassez-moi »</div>
+    <div class="interp">Le Baron est centré sur lui même.</div>
+  </div><div class="cit-card" data-id="mm67x2cgzcxc">
+    <div class="cdot" style="background:#a02060"></div>
+    <div class="proc">Impératif</div>
+    <div class="cit-item">« embrassez-moi, et embrassez-vous. »</div>
+    <div class="interp">Le baron force pour les rassembler.</div>
+  </div><div class="cit-card" data-id="mm6800s2msgy">
+    <div class="cdot" style="background:#b8900a"></div>
+    <div class="proc">Hypocoristiques</div>
+    <div class="cit-item">« ma chère »</div><div class="cit-item">« mon cher »</div><div class="cit-item">« ma sœur bien-aimée »</div>
+    <div class="interp">Perdican répond positivement, son affection.</div>
+  </div><div class="cit-card" data-id="mm6842mdxg42">
+    <div class="cdot" style="background:#257a25"></div>
+    <div class="proc">! intensifs, déterminant + adverbe exclamatifs</div>
+    <div class="cit-item">« bien-aimée ! Quel bonheur ! que je suis heureux ! »</div>
+    <div class="interp">Enthousiasme de P</div>
+  </div><div class="cit-card" data-id="mm685hs44kus">
+    <div class="cdot" style="background:#1f50a0"></div>
+    <div class="proc">Prise de parole</div>
+    <div class="cit-item">« Camille. - Mon père et mon cousin, je vous salue. »</div>
+    <div class="interp">Réponse froide de camille</div>
+  </div><div class="cit-card" data-id="mm687lfm77yf">
+    <div class="cdot" style="background:#a02060"></div>
+    <div class="proc">Antithèse</div>
+    <div class="cit-item">« ma sœur »</div><div class="cit-item">« mon cousin »</div>
+    <div class="interp">C met de la distance.</div>
+  </div><div class="cit-card" data-id="mm68gydbk9jg">
+    <div class="cdot" style="background:#b8900a"></div>
+    <div class="proc">Remarque sur le physique + comparaison</div>
+    <div class="cit-item">« Comme te voilà grande, Camille ! et belle comme le jour. »</div>
+    <div class="interp">Insiste sur l'évolution + comparaison banale mais lyrique et flatteuse</div>
+  </div><div class="cit-card" data-id="mm68jmf96y5g">
+    <div class="cdot" style="background:#257a25"></div>
+    <div class="proc">Comique de situation + Q</div>
+    <div class="cit-item">« Quand as-tu quitté Paris, Perdican ? »</div>
+    <div class="interp">Camille ne répond pas au compliment, comique de situation. Le baron pose donc une question sans importance.</div>
+  </div><div class="cit-card" data-id="mm68klnm15kd">
+    <div class="cdot" style="background:#1f50a0"></div>
+    <div class="proc">épanorthose</div>
+    <div class="cit-item">« Mercredi, je crois, ou mardi. »</div>
+    <div class="interp">La Q n'avait pas d’intérêt</div>
+  </div><div class="cit-card" data-id="mm68vt9foqog">
+    <div class="cdot" style="background:#a02060"></div>
+    <div class="proc">Présentatif</div>
+    <div class="cit-item">« Comme te voilà métamorphosée en femme ! »</div>
+    <div class="interp">P montre que C est devenue une femme, terme qui renvoie aussi au fait qu’elle est prête pour le mariage.</div>
+  </div><div class="cit-card" data-id="mm68za64sdop">
+    <div class="cdot" style="background:#b8900a"></div>
+    <div class="proc">Q réthorique</div>
+    <div class="cit-item">« Je suis donc un homme, moi ? »</div>
+    <div class="interp">Aspect corrélatif : complicité</div>
+  </div><div class="cit-card" data-id="mm68zzqs64lr">
+    <div class="cdot" style="background:#257a25"></div>
+    <div class="proc">Remarque</div>
+    <div class="cit-item">« Il me semble que c'est hier que je t'ai vue pas plus haute que cela. »</div>
+    <div class="interp">banale mais continue d'instaurer une complicité</div>
+  </div><div class="cit-card" data-id="mm692sgm9jr1">
+    <div class="cdot" style="background:#1f50a0"></div>
+    <div class="proc">2x Comique + énumération</div>
+    <div class="cit-item">« Le Baron. - Vous devez être fatigués ; la route est longue, et il fait chaud. »</div>
+    <div class="interp">C ne répond toujours pas, le Baron cherche des explications</div>
+  </div><div class="cit-card" data-id="mm6965ubr0pb">
+    <div class="cdot" style="background:#a02060"></div>
+    <div class="proc">interjection + exclamation + injonctif + apostophe</div>
+    <div class="cit-item">« Oh ! mon Dieu, non. Regardez donc, mon père, comme Camille est jolie ! »</div>
+    <div class="interp">P toujours enthousiaste, réfute les explications du baron et l'invite à constater la beauté de C</div>
+  </div><div class="cit-card" data-id="mm697t8jv8b5">
+    <div class="cdot" style="background:#b8900a"></div>
+    <div class="proc">3x Comique de situation + répétition maintenant, injonction</div>
+    <div class="cit-item">« Allons, Camille, embrasse ton cousin »</div>
+    <div class="interp">C ne répond toujours pas, le Baron appel à la raison</div>
+  </div><div class="cit-card" data-id="mm698rzpsrb3">
+    <div class="cdot" style="background:#257a25"></div>
+    <div class="proc">Vouvoiement</div>
+    <div class="cit-item">« Excusez-moi. »</div>
+    <div class="interp">Nouvelle réponse froide de C, mise à distance</div>
+  </div><div class="cit-card" data-id="mm9mfl1y88y2">
+    <div class="cdot" style="background:#1f50a0"></div>
+    <div class="proc">impératif</div>
+    <div class="cit-item">« Un compliment vaut un baiser ; embrasse-la, Perdican. »</div>
+    <div class="interp">Le baron énonce une règle qui montre son obsession pour les échanges économiques puis il donne un ordre à P</div>
+  </div><div class="cit-card" data-id="mm9mgznfrl27">
+    <div class="cdot" style="background:#a02060"></div>
+    <div class="proc">Didascalie interne</div>
+    <div class="cit-item">« Si ma cousine recule quand »</div>
+    <div class="interp">Les deux héros se repoussent</div>
+  </div><div class="cit-card" data-id="mm9mi6qd3wht">
+    <div class="cdot" style="background:#b8900a"></div>
+    <div class="proc">répétition</div>
+    <div class="cit-item">« à mon tour : Excusez-moi »</div>
+    <div class="interp">attitude mimétique + refus de l'autorité du Baron</div>
+  </div><div class="cit-card" data-id="mm9mktfv95ur">
+    <div class="cdot" style="background:#257a25"></div>
+    <div class="proc">mais adversatif + négation totale</div>
+    <div class="cit-item">« l'amour peut voler un baiser, mais non pas l'amitié »</div>
+    <div class="interp">P place leur relation sur le plan amical</div>
+  </div><div class="cit-card" data-id="mm9mnaqpe3u0">
+    <div class="cdot" style="background:#1f50a0"></div>
+    <div class="proc">Proverbe</div>
+    <div class="cit-item">« L'amitié ni l'amour ne doivent recevoir que ce qu'ils peuvent rendre. »</div>
+    <div class="interp">Camille dit poliment ne ressentir ni amour ni amitié pour son cousin</div>
+  </div><div class="mv-hdr"><span class="mv-num">MOUVEMENT II</span><span class="mv-name">La profonde déception et l’orgueil piqué du baron</span></div><div class="cit-card" data-id="mm9n1cw5u5vg">
+    <div class="cdot" style="background:#a02060"></div>
+    <div class="proc">Présentatif + interjection</div>
+    <div class="cit-item">« Voilà un commencement de mauvais augure, hé ? »</div>
+    <div class="interp">le plan du Baron se passe mal, on voit son dépit</div>
+  </div><div class="cit-card" data-id="mm9ob2sq1ouf">
+    <div class="cdot" style="background:#b8900a"></div>
+    <div class="proc">Présent gnomique + litote + mais adversatif</div>
+    <div class="cit-item">« Trop de pudeur est sans doute un défaut ; mais le mariage lève bien des scrupules. »</div>
+    <div class="interp">Tente de rassurer le baron + critique des religieux, bridaine étant un curé</div>
+  </div><div class="cit-card" data-id="mm9ocqnwg57p">
+    <div class="cdot" style="background:#257a25"></div>
+    <div class="proc">parralélisme + rythme binaire</div>
+    <div class="cit-item">« – Je suis choqué, - blessé. »</div><div class="cit-item">« - Je suis vexé, piqué. - »</div>
+    <div class="interp">Insiste sur sa déception</div>
+  </div><div class="cit-card" data-id="mm9pxs9vgx23">
+    <div class="cdot" style="background:#1f50a0"></div>
+    <div class="proc">Comique de répétition + de situation, didascalie interne</div>
+    <div class="cit-item">« Excusez-moi ! Avez-vous vu qu'elle a fait mine de se signer ? »</div>
+    <div class="interp">imitation + caricature Camille, pour Le Baron, la foi ne peut relever que d'une pose et en aucun cas n'être une attitude sincère.</div>
+  </div><div class="cit-card" data-id="mm9q84pahtaa">
+    <div class="cdot" style="background:#a02060"></div>
+    <div class="proc">proposition subordonnée relative</div>
+    <div class="cit-item">« Ce moment, qui devait m'être si doux, est complètement gâté. »</div>
+    <div class="interp">échec total constaté, déception</div>
+  </div><div class="cit-card" data-id="mm9q9yknchjn">
+    <div class="cdot" style="background:#b8900a"></div>
+    <div class="proc">Juron (commique de mot) + présentatif</div>
+    <div class="cit-item">« Diable ! voilà qui est fort mauvais. »</div>
+    <div class="interp">pessimisme, son plan est un échec</div>
+  </div><div class="cit-card" data-id="mm9r0k2renzx">
+    <div class="cdot" style="background:#257a25"></div>
+    <div class="proc">didascalie interne</div>
+    <div class="cit-item">« Dites-leur quelques mots ; les voilà qui se tournent le dos. »</div>
+    <div class="interp">Bridaine encourage le Baron à parler aux jeunes gens et commente leur attitude physiqu, ils sont encore opposés mais symétriques</div>
+  </div><div class="mv-hdr"><span class="mv-num">MOUVEMENT III</span><span class="mv-name">Le Baron s'entretient avec Camille</span></div><div class="cit-card" data-id="mm9r2txj78xr">
+    <div class="cdot" style="background:#1f50a0"></div>
+    <div class="proc">locution interjective + Q partielle</div>
+    <div class="cit-item">« Eh bien ! mes enfants, à quoi pensez-vous donc ? »</div>
+    <div class="interp">les faire réagir + souligne leur éloignement commun, chacun étant plongé dans une contemplation et une activité différente</div>
+  </div><div class="cit-card" data-id="mm9r5zum2qcw">
+    <div class="cdot" style="background:#a02060"></div>
+    <div class="proc">didascalie avec participe présent + présentatif + ! + Q</div>
+    <div class="cit-item">« Camille, regardant un tableau. – Voilà un beau portrait, mon oncle ! N'est-ce pas une grand'tante à nous ? »</div>
+    <div class="interp">Camille est absorbée dans la contemplation d'un portrait qui représente une ancêtre religieuse de la famille.</div>
+  </div><div class="cit-card" data-id="mm9rb14jl03a">
+    <div class="cdot" style="background:#b8900a"></div>
+    <div class="proc">épanorthose</div>
+    <div class="cit-item">« Oui, mon enfant, c'est ta bisaïeule, - ou du moins la sœur de ton bisaïeul, - »</div>
+    <div class="interp">Le baron éprouve peut d’intérêt à cette religieuse</div>
+  </div><div class="cit-card" data-id="mm9s1jwvx609">
+    <div class="cdot" style="background:#257a25"></div>
+    <div class="proc">hypocoristique ironique, verbe modélisateur, négation restricive</div>
+    <div class="cit-item">« car la chère dame n'a jamais concouru, - pour sa part, je crois, autrement qu'en prières, - à l'accroissement de la famille. »</div>
+    <div class="interp">le Baron n'a pas vraiment de respect pour celle ci, il introduit une potentielle erreur et donc une fausse vertu</div>
+  </div><div class="cit-card" data-id="mm9s4fd7c5p9">
+    <div class="cdot" style="background:#1f50a0"></div>
+    <div class="proc">locution interjective familière + pas de !</div>
+    <div class="cit-item">« C'était, ma foi, une sainte femme. »</div>
+    <div class="interp">jeu de mot : le terme « foi » dans la bouche du Baron est décralisé. Contraste entre sa vision de la religion et celle de cette parente + pas d’admiration particulière</div>
+  </div><div class="cit-card" data-id="mm9s68mh9far">
+    <div class="cdot" style="background:#a02060"></div>
+    <div class="proc">Interjection + adverbe "oui" + 2 exclamations</div>
+    <div class="cit-item">« Oh ! oui, une sainte ! c'est ma grand'tante Isabelle. Comme ce costume religieux lui va bien ! »</div>
+    <div class="interp">enthousiasme + admiration : annonce que ce qui interesse Camille, c’est l’amour storgê : obstacle à l’intrigue amoureuse.</div>
+  </div><div class="slabel">Conclusion</div><div class="conclu-card"><h3>Bilan</h3><p>Ainsi, la scène 2 de l’acte I prolonge la scène d’exposition et infléchit sa tonalité comique en installant la mésentente entre les deux jeunes gens que l’on cherche à unir, ainsi que l’orgueil blessé du Baron dont l’autorité est bafouée. La forte symétrie de la scène vise non à rapprocher, mais à éloigner les deux héros. Elle renvoie au thème tragique de l’amour empêché, lisible dans les mouvements scéniques : entrées opposées, impossibilité de l’embrassade, dos tournés en fin de scène. La mésentente est immédiate et révèle deux caractères opposés : Perdican, enthousiaste et sensible à la beauté du monde, et Camille, plus complexe, qui se réfugie dans la religion pour refuser le projet matrimonial. La frustration du Baron constitue un contrepoint comique. Cette scène annonce enfin la scène 5 de l’acte II, où s’affrontent clairement leurs deux conceptions de l’amour : l’absolu divin pour Camille, l’acceptation de l’imperfection humaine pour Perdican.</p></div></div>
+    <div id="edit-wrap" style="display: flex;"><div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;"><span style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 0.68rem; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase;">ONBAA Acte I Scène 2</span><button style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 0.65rem;" class="iBtn">✏ modifier le texte</button></div><div class="esec">Mouvements</div><div class="erow"><div class="erow-l"><div style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 0.63rem; color: var(--muted);">MOUVEMENT I</div><div style="font-family: &quot;Playfair Display&quot;, serif; font-style: italic; font-size: 0.82rem; margin-top: 2px;">La rencontre amoureuse gâchée par Camille</div></div><div class="erow-acts"><button class="iBtn" title="Modifier">✏</button><button class="iBtn del" title="Supprimer">✕</button></div></div><div class="erow"><div class="erow-l"><div style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 0.63rem; color: var(--muted);">MOUVEMENT II</div><div style="font-family: &quot;Playfair Display&quot;, serif; font-style: italic; font-size: 0.82rem; margin-top: 2px;">La profonde déception et l’orgueil piqué du baron</div></div><div class="erow-acts"><button class="iBtn" title="Modifier">✏</button><button class="iBtn del" title="Supprimer">✕</button></div></div><div class="erow"><div class="erow-l"><div style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 0.63rem; color: var(--muted);">MOUVEMENT III</div><div style="font-family: &quot;Playfair Display&quot;, serif; font-style: italic; font-size: 0.82rem; margin-top: 2px;">Le Baron s'entretient avec Camille</div></div><div class="erow-acts"><button class="iBtn" title="Modifier">✏</button><button class="iBtn del" title="Supprimer">✕</button></div></div><button class="add-dashed">＋ Ajouter un mouvement</button><div class="esec">Citations</div><div class="erow" style="border-left: 3px solid rgb(184, 144, 10);"><div class="erow-l"><div style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 0.63rem; color: var(--accent); text-transform: uppercase;">Didascalie</div><div style="font-family: &quot;Playfair Display&quot;, serif; font-style: italic; font-size: 0.76rem; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">« (Perdican entre d'un côté, Camille de l'autre.) »</div></div><div class="erow-acts"><button class="iBtn" title="Modifier">✏</button><button class="iBtn del" title="Supprimer">✕</button></div></div><div class="erow" style="border-left: 3px solid rgb(37, 122, 37);"><div class="erow-l"><div style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 0.63rem; color: var(--accent); text-transform: uppercase;">Prise de parole</div><div style="font-family: &quot;Playfair Display&quot;, serif; font-style: italic; font-size: 0.76rem; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">« Le Baron. - ( »</div></div><div class="erow-acts"><button class="iBtn" title="Modifier">✏</button><button class="iBtn del" title="Supprimer">✕</button></div></div><div class="erow" style="border-left: 3px solid rgb(31, 80, 160);"><div class="erow-l"><div style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 0.63rem; color: var(--accent); text-transform: uppercase;">Répétition des marques de la 1ère personne</div><div style="font-family: &quot;Playfair Display&quot;, serif; font-style: italic; font-size: 0.76rem; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">« mes enfants » +3</div></div><div class="erow-acts"><button class="iBtn" title="Modifier">✏</button><button class="iBtn del" title="Supprimer">✕</button></div></div><div class="erow" style="border-left: 3px solid rgb(160, 32, 96);"><div class="erow-l"><div style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 0.63rem; color: var(--accent); text-transform: uppercase;">Impératif</div><div style="font-family: &quot;Playfair Display&quot;, serif; font-style: italic; font-size: 0.76rem; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">« embrassez-moi, et embrassez-vous. »</div></div><div class="erow-acts"><button class="iBtn" title="Modifier">✏</button><button class="iBtn del" title="Supprimer">✕</button></div></div><div class="erow" style="border-left: 3px solid rgb(184, 144, 10);"><div class="erow-l"><div style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 0.63rem; color: var(--accent); text-transform: uppercase;">Hypocoristiques</div><div style="font-family: &quot;Playfair Display&quot;, serif; font-style: italic; font-size: 0.76rem; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">« ma chère » +2</div></div><div class="erow-acts"><button class="iBtn" title="Modifier">✏</button><button class="iBtn del" title="Supprimer">✕</button></div></div><div class="erow" style="border-left: 3px solid rgb(37, 122, 37);"><div class="erow-l"><div style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 0.63rem; color: var(--accent); text-transform: uppercase;">! intensifs, déterminant + adverbe exclamatifs</div><div style="font-family: &quot;Playfair Display&quot;, serif; font-style: italic; font-size: 0.76rem; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">« bien-aimée ! Quel bonheur ! que je suis heureux ! »</div></div><div class="erow-acts"><button class="iBtn" title="Modifier">✏</button><button class="iBtn del" title="Supprimer">✕</button></div></div><div class="erow" style="border-left: 3px solid rgb(31, 80, 160);"><div class="erow-l"><div style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 0.63rem; color: var(--accent); text-transform: uppercase;">Prise de parole</div><div style="font-family: &quot;Playfair Display&quot;, serif; font-style: italic; font-size: 0.76rem; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">« Camille. - Mon père et mon cousin, je vous salue. »</div></div><div class="erow-acts"><button class="iBtn" title="Modifier">✏</button><button class="iBtn del" title="Supprimer">✕</button></div></div><div class="erow" style="border-left: 3px solid rgb(160, 32, 96);"><div class="erow-l"><div style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 0.63rem; color: var(--accent); text-transform: uppercase;">Antithèse</div><div style="font-family: &quot;Playfair Display&quot;, serif; font-style: italic; font-size: 0.76rem; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">« ma sœur » +1</div></div><div class="erow-acts"><button class="iBtn" title="Modifier">✏</button><button class="iBtn del" title="Supprimer">✕</button></div></div><div class="erow" style="border-left: 3px solid rgb(184, 144, 10);"><div class="erow-l"><div style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 0.63rem; color: var(--accent); text-transform: uppercase;">Remarque sur le physique + comparaison</div><div style="font-family: &quot;Playfair Display&quot;, serif; font-style: italic; font-size: 0.76rem; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">« Comme te voilà grande, Camille ! et belle comme le jour. »</div></div><div class="erow-acts"><button class="iBtn" title="Modifier">✏</button><button class="iBtn del" title="Supprimer">✕</button></div></div><div class="erow" style="border-left: 3px solid rgb(37, 122, 37);"><div class="erow-l"><div style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 0.63rem; color: var(--accent); text-transform: uppercase;">Comique de situation + Q</div><div style="font-family: &quot;Playfair Display&quot;, serif; font-style: italic; font-size: 0.76rem; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">« Quand as-tu quitté Paris, Perdican ? »</div></div><div class="erow-acts"><button class="iBtn" title="Modifier">✏</button><button class="iBtn del" title="Supprimer">✕</button></div></div><div class="erow" style="border-left: 3px solid rgb(31, 80, 160);"><div class="erow-l"><div style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 0.63rem; color: var(--accent); text-transform: uppercase;">épanorthose</div><div style="font-family: &quot;Playfair Display&quot;, serif; font-style: italic; font-size: 0.76rem; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">« Mercredi, je crois, ou mardi. »</div></div><div class="erow-acts"><button class="iBtn" title="Modifier">✏</button><button class="iBtn del" title="Supprimer">✕</button></div></div><div class="erow" style="border-left: 3px solid rgb(160, 32, 96);"><div class="erow-l"><div style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 0.63rem; color: var(--accent); text-transform: uppercase;">Présentatif</div><div style="font-family: &quot;Playfair Display&quot;, serif; font-style: italic; font-size: 0.76rem; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">« Comme te voilà métamorphosée en femme ! »</div></div><div class="erow-acts"><button class="iBtn" title="Modifier">✏</button><button class="iBtn del" title="Supprimer">✕</button></div></div><div class="erow" style="border-left: 3px solid rgb(184, 144, 10);"><div class="erow-l"><div style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 0.63rem; color: var(--accent); text-transform: uppercase;">Q réthorique</div><div style="font-family: &quot;Playfair Display&quot;, serif; font-style: italic; font-size: 0.76rem; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">« Je suis donc un homme, moi ? »</div></div><div class="erow-acts"><button class="iBtn" title="Modifier">✏</button><button class="iBtn del" title="Supprimer">✕</button></div></div><div class="erow" style="border-left: 3px solid rgb(37, 122, 37);"><div class="erow-l"><div style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 0.63rem; color: var(--accent); text-transform: uppercase;">Remarque</div><div style="font-family: &quot;Playfair Display&quot;, serif; font-style: italic; font-size: 0.76rem; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">« Il me semble que c'est hier que je t'ai vue pas plus haute que cela. »</div></div><div class="erow-acts"><button class="iBtn" title="Modifier">✏</button><button class="iBtn del" title="Supprimer">✕</button></div></div><div class="erow" style="border-left: 3px solid rgb(31, 80, 160);"><div class="erow-l"><div style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 0.63rem; color: var(--accent); text-transform: uppercase;">2x Comique + énumération</div><div style="font-family: &quot;Playfair Display&quot;, serif; font-style: italic; font-size: 0.76rem; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">« Le Baron. - Vous devez être fatigués ; la route est longue, et il fait chaud. »</div></div><div class="erow-acts"><button class="iBtn" title="Modifier">✏</button><button class="iBtn del" title="Supprimer">✕</button></div></div><div class="erow" style="border-left: 3px solid rgb(160, 32, 96);"><div class="erow-l"><div style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 0.63rem; color: var(--accent); text-transform: uppercase;">interjection + exclamation + injonctif + apostophe</div><div style="font-family: &quot;Playfair Display&quot;, serif; font-style: italic; font-size: 0.76rem; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">« Oh ! mon Dieu, non. Regardez donc, mon père, comme Camille est jolie ! »</div></div><div class="erow-acts"><button class="iBtn" title="Modifier">✏</button><button class="iBtn del" title="Supprimer">✕</button></div></div><div class="erow" style="border-left: 3px solid rgb(184, 144, 10);"><div class="erow-l"><div style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 0.63rem; color: var(--accent); text-transform: uppercase;">3x Comique de situation + répétition maintenant, injonction</div><div style="font-family: &quot;Playfair Display&quot;, serif; font-style: italic; font-size: 0.76rem; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">« Allons, Camille, embrasse ton cousin »</div></div><div class="erow-acts"><button class="iBtn" title="Modifier">✏</button><button class="iBtn del" title="Supprimer">✕</button></div></div><div class="erow" style="border-left: 3px solid rgb(37, 122, 37);"><div class="erow-l"><div style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 0.63rem; color: var(--accent); text-transform: uppercase;">Vouvoiement</div><div style="font-family: &quot;Playfair Display&quot;, serif; font-style: italic; font-size: 0.76rem; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">« Excusez-moi. »</div></div><div class="erow-acts"><button class="iBtn" title="Modifier">✏</button><button class="iBtn del" title="Supprimer">✕</button></div></div><div class="erow" style="border-left: 3px solid rgb(31, 80, 160);"><div class="erow-l"><div style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 0.63rem; color: var(--accent); text-transform: uppercase;">impératif</div><div style="font-family: &quot;Playfair Display&quot;, serif; font-style: italic; font-size: 0.76rem; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">« Un compliment vaut un baiser ; embrasse-la, Perdican. »</div></div><div class="erow-acts"><button class="iBtn" title="Modifier">✏</button><button class="iBtn del" title="Supprimer">✕</button></div></div><div class="erow" style="border-left: 3px solid rgb(160, 32, 96);"><div class="erow-l"><div style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 0.63rem; color: var(--accent); text-transform: uppercase;">Didascalie interne</div><div style="font-family: &quot;Playfair Display&quot;, serif; font-style: italic; font-size: 0.76rem; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">« Si ma cousine recule quand »</div></div><div class="erow-acts"><button class="iBtn" title="Modifier">✏</button><button class="iBtn del" title="Supprimer">✕</button></div></div><div class="erow" style="border-left: 3px solid rgb(184, 144, 10);"><div class="erow-l"><div style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 0.63rem; color: var(--accent); text-transform: uppercase;">répétition</div><div style="font-family: &quot;Playfair Display&quot;, serif; font-style: italic; font-size: 0.76rem; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">« à mon tour : Excusez-moi »</div></div><div class="erow-acts"><button class="iBtn" title="Modifier">✏</button><button class="iBtn del" title="Supprimer">✕</button></div></div><div class="erow" style="border-left: 3px solid rgb(37, 122, 37);"><div class="erow-l"><div style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 0.63rem; color: var(--accent); text-transform: uppercase;">mais adversatif + négation totale</div><div style="font-family: &quot;Playfair Display&quot;, serif; font-style: italic; font-size: 0.76rem; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">« l'amour peut voler un baiser, mais non pas l'amitié »</div></div><div class="erow-acts"><button class="iBtn" title="Modifier">✏</button><button class="iBtn del" title="Supprimer">✕</button></div></div><div class="erow" style="border-left: 3px solid rgb(31, 80, 160);"><div class="erow-l"><div style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 0.63rem; color: var(--accent); text-transform: uppercase;">Proverbe</div><div style="font-family: &quot;Playfair Display&quot;, serif; font-style: italic; font-size: 0.76rem; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">« L'amitié ni l'amour ne doivent recevoir que ce qu'ils peuvent rendre. »</div></div><div class="erow-acts"><button class="iBtn" title="Modifier">✏</button><button class="iBtn del" title="Supprimer">✕</button></div></div><div class="erow" style="border-left: 3px solid rgb(160, 32, 96);"><div class="erow-l"><div style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 0.63rem; color: var(--accent); text-transform: uppercase;">Présentatif + interjection</div><div style="font-family: &quot;Playfair Display&quot;, serif; font-style: italic; font-size: 0.76rem; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">« Voilà un commencement de mauvais augure, hé ? »</div></div><div class="erow-acts"><button class="iBtn" title="Modifier">✏</button><button class="iBtn del" title="Supprimer">✕</button></div></div><div class="erow" style="border-left: 3px solid rgb(184, 144, 10);"><div class="erow-l"><div style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 0.63rem; color: var(--accent); text-transform: uppercase;">Présent gnomique + litote + mais adversatif</div><div style="font-family: &quot;Playfair Display&quot;, serif; font-style: italic; font-size: 0.76rem; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">« Trop de pudeur est sans doute un défaut ; mais le mariage lève bien des scrupules. »</div></div><div class="erow-acts"><button class="iBtn" title="Modifier">✏</button><button class="iBtn del" title="Supprimer">✕</button></div></div><div class="erow" style="border-left: 3px solid rgb(37, 122, 37);"><div class="erow-l"><div style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 0.63rem; color: var(--accent); text-transform: uppercase;">parralélisme + rythme binaire</div><div style="font-family: &quot;Playfair Display&quot;, serif; font-style: italic; font-size: 0.76rem; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">« – Je suis choqué, - blessé. » +1</div></div><div class="erow-acts"><button class="iBtn" title="Modifier">✏</button><button class="iBtn del" title="Supprimer">✕</button></div></div><div class="erow" style="border-left: 3px solid rgb(31, 80, 160);"><div class="erow-l"><div style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 0.63rem; color: var(--accent); text-transform: uppercase;">Comique de répétition + de situation, didascalie interne</div><div style="font-family: &quot;Playfair Display&quot;, serif; font-style: italic; font-size: 0.76rem; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">« Excusez-moi ! Avez-vous vu qu'elle a fait mine de se signer ? »</div></div><div class="erow-acts"><button class="iBtn" title="Modifier">✏</button><button class="iBtn del" title="Supprimer">✕</button></div></div><div class="erow" style="border-left: 3px solid rgb(160, 32, 96);"><div class="erow-l"><div style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 0.63rem; color: var(--accent); text-transform: uppercase;">proposition subordonnée relative</div><div style="font-family: &quot;Playfair Display&quot;, serif; font-style: italic; font-size: 0.76rem; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">« Ce moment, qui devait m'être si doux, est complètement gâté. »</div></div><div class="erow-acts"><button class="iBtn" title="Modifier">✏</button><button class="iBtn del" title="Supprimer">✕</button></div></div><div class="erow" style="border-left: 3px solid rgb(184, 144, 10);"><div class="erow-l"><div style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 0.63rem; color: var(--accent); text-transform: uppercase;">Juron (commique de mot) + présentatif</div><div style="font-family: &quot;Playfair Display&quot;, serif; font-style: italic; font-size: 0.76rem; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">« Diable ! voilà qui est fort mauvais. »</div></div><div class="erow-acts"><button class="iBtn" title="Modifier">✏</button><button class="iBtn del" title="Supprimer">✕</button></div></div><div class="erow" style="border-left: 3px solid rgb(37, 122, 37);"><div class="erow-l"><div style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 0.63rem; color: var(--accent); text-transform: uppercase;">didascalie interne</div><div style="font-family: &quot;Playfair Display&quot;, serif; font-style: italic; font-size: 0.76rem; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">« Dites-leur quelques mots ; les voilà qui se tournent le dos. »</div></div><div class="erow-acts"><button class="iBtn" title="Modifier">✏</button><button class="iBtn del" title="Supprimer">✕</button></div></div><div class="erow" style="border-left: 3px solid rgb(31, 80, 160);"><div class="erow-l"><div style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 0.63rem; color: var(--accent); text-transform: uppercase;">locution interjective + Q partielle</div><div style="font-family: &quot;Playfair Display&quot;, serif; font-style: italic; font-size: 0.76rem; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">« Eh bien ! mes enfants, à quoi pensez-vous donc ? »</div></div><div class="erow-acts"><button class="iBtn" title="Modifier">✏</button><button class="iBtn del" title="Supprimer">✕</button></div></div><div class="erow" style="border-left: 3px solid rgb(160, 32, 96);"><div class="erow-l"><div style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 0.63rem; color: var(--accent); text-transform: uppercase;">didascalie avec participe présent + présentatif + ! + Q</div><div style="font-family: &quot;Playfair Display&quot;, serif; font-style: italic; font-size: 0.76rem; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">« Camille, regardant un tableau. – Voilà un beau portrait, mon oncle ! N'est-ce pas une grand'tante à nous ? »</div></div><div class="erow-acts"><button class="iBtn" title="Modifier">✏</button><button class="iBtn del" title="Supprimer">✕</button></div></div><div class="erow" style="border-left: 3px solid rgb(184, 144, 10);"><div class="erow-l"><div style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 0.63rem; color: var(--accent); text-transform: uppercase;">épanorthose</div><div style="font-family: &quot;Playfair Display&quot;, serif; font-style: italic; font-size: 0.76rem; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">« Oui, mon enfant, c'est ta bisaïeule, - ou du moins la sœur de ton bisaïeul, - »</div></div><div class="erow-acts"><button class="iBtn" title="Modifier">✏</button><button class="iBtn del" title="Supprimer">✕</button></div></div><div class="erow" style="border-left: 3px solid rgb(37, 122, 37);"><div class="erow-l"><div style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 0.63rem; color: var(--accent); text-transform: uppercase;">hypocoristique ironique, verbe modélisateur, négation restricive</div><div style="font-family: &quot;Playfair Display&quot;, serif; font-style: italic; font-size: 0.76rem; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">« car la chère dame n'a jamais concouru, - pour sa part, je crois, autrement qu'en prières, - à l'accroissement de la famille. »</div></div><div class="erow-acts"><button class="iBtn" title="Modifier">✏</button><button class="iBtn del" title="Supprimer">✕</button></div></div><div class="erow" style="border-left: 3px solid rgb(31, 80, 160);"><div class="erow-l"><div style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 0.63rem; color: var(--accent); text-transform: uppercase;">locution interjective familière + pas de !</div><div style="font-family: &quot;Playfair Display&quot;, serif; font-style: italic; font-size: 0.76rem; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">« C'était, ma foi, une sainte femme. »</div></div><div class="erow-acts"><button class="iBtn" title="Modifier">✏</button><button class="iBtn del" title="Supprimer">✕</button></div></div><div class="erow" style="border-left: 3px solid rgb(160, 32, 96);"><div class="erow-l"><div style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 0.63rem; color: var(--accent); text-transform: uppercase;">Interjection + adverbe "oui" + 2 exclamations</div><div style="font-family: &quot;Playfair Display&quot;, serif; font-style: italic; font-size: 0.76rem; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">« Oh ! oui, une sainte ! c'est ma grand'tante Isabelle. Comme ce costume religieux lui va bien ! »</div></div><div class="erow-acts"><button class="iBtn" title="Modifier">✏</button><button class="iBtn del" title="Supprimer">✕</button></div></div><button class="add-dashed">＋ Ajouter une citation</button></div>
+  </div>
+  <div id="panel-right">
+    <div class="text-meta">
+      <h2 id="disp-title">ONBAA Acte I Scène 2</h2>
+      <span id="disp-author">Musset</span>
+    </div>
+    <div id="text-display"><span class="mark-latent" data-ids="mm67srpmq9c1">Le Baron. - </span><span class="mark-latent" data-ids="mm67s4obhkn6 mm67srpmq9c1">(</span><span class="mark-latent" data-ids="mm67s4obhkn6">Perdican entre d'un côté, Camille de l'autre.)</span> Bonjour, <span class="mark-latent" data-ids="mm67vez4lxo1">mes enfants</span> ; bonjour, <span class="mark-latent" data-ids="mm67vez4lxo1 mm6800s2msgy">ma chère</span> Camille, <span class="mark-latent" data-ids="mm67vez4lxo1 mm6800s2msgy">mon cher</span> Perdican ! <span class="mark-latent" data-ids="mm67vez4lxo1 mm67x2cgzcxc">embrassez-moi</span><span class="mark-latent" data-ids="mm67x2cgzcxc">, et embrassez-vous.</span><br><br>Perdican. - Bonjour, mon père, <span class="mark-latent" data-ids="mm6800s2msgy mm687lfm77yf">ma sœur</span><span class="mark-latent" data-ids="mm6800s2msgy"> </span><span class="mark-latent" data-ids="mm6800s2msgy mm6842mdxg42">bien-aimée</span><span class="mark-latent" data-ids="mm6842mdxg42"> ! Quel bonheur ! que je suis heureux !</span><br><br><span class="mark-latent" data-ids="mm685hs44kus">Camille. - Mon père et </span><span class="mark-latent" data-ids="mm685hs44kus mm687lfm77yf">mon cousin</span><span class="mark-latent" data-ids="mm685hs44kus">, je vous salue.</span><br><br>Perdican. - <span class="mark-latent" data-ids="mm68gydbk9jg">Comme te voilà grande, Camille ! et belle comme le jour.</span><br><br>Le Baron. - <span class="mark-latent" data-ids="mm68jmf96y5g">Quand as-tu quitté Paris, Perdican ?</span><br><br>Perdican. - <span class="mark-latent" data-ids="mm68klnm15kd">Mercredi, je crois, ou mardi.</span> <span class="mark-latent" data-ids="mm68vt9foqog">Comme te voilà métamorphosée en femme !</span> <span class="mark-latent" data-ids="mm68za64sdop">Je suis donc un homme, moi ?</span> <span class="mark-latent" data-ids="mm68zzqs64lr">Il me semble que c'est hier que je t'ai vue pas plus haute que cela.</span><br><br><span class="mark-latent" data-ids="mm692sgm9jr1">Le Baron. - Vous devez être fatigués ; la route est longue, et il fait chaud.</span><br><br>Perdican. – <span class="mark-latent" data-ids="mm6965ubr0pb">Oh ! mon Dieu, non. Regardez donc, mon père, comme Camille est jolie !</span><br><br>Le Baron. – <span class="mark-latent" data-ids="mm697t8jv8b5">Allons, Camille, embrasse ton cousin</span>.<br><br>Camille. – <span class="mark-latent" data-ids="mm698rzpsrb3">Excusez-moi.</span><br><br>Le Baron. – <span class="mark-latent" data-ids="mm9mfl1y88y2">Un compliment vaut un baiser ; embrasse-la, Perdican.</span><br><br>Perdican. – <span class="mark-latent" data-ids="mm9mgznfrl27">Si ma cousine recule quand</span> je lui tends la main, je vous dirai <span class="mark-latent" data-ids="mm9mi6qd3wht">à mon tour : Excusez-moi</span> ; <span class="mark-latent" data-ids="mm9mktfv95ur">l'amour peut voler un baiser, mais non pas l'amitié</span>.<br><br>Camille. – <span class="mark-latent" data-ids="mm9mnaqpe3u0">L'amitié ni l'amour ne doivent recevoir que ce qu'ils peuvent rendre.</span><br><br>Le Baron, à maître Bridaine. – <span class="mark-latent" data-ids="mm9n1cw5u5vg">Voilà un commencement de mauvais augure, hé ?</span><br><br>Maître Bridaine, au baron. – <span class="mark-latent" data-ids="mm9ob2sq1ouf">Trop de pudeur est sans doute un défaut ; mais le mariage lève bien des scrupules.</span><br><br>Le Baron, à maître Bridaine. <span class="mark-latent" data-ids="mm9ocqnwg57p">– Je suis choqué, - blessé.</span> - Cette réponse m'a déplu. - <span class="mark-latent" data-ids="mm9pxs9vgx23">Excusez-moi ! Avez-vous vu qu'elle a fait mine de se signer ?</span> - Venez ici, que je vous parle. - Cela m'est pénible au dernier point. <span class="mark-latent" data-ids="mm9q84pahtaa">Ce moment, qui devait m'être si doux, est complètement gâté.</span> <span class="mark-latent" data-ids="mm9ocqnwg57p">- Je suis vexé, piqué. -</span> <span class="mark-latent" data-ids="mm9q9yknchjn">Diable ! voilà qui est fort mauvais.</span><br><br>Maître Bridaine. – <span class="mark-latent" data-ids="mm9r0k2renzx">Dites-leur quelques mots ; les voilà qui se tournent le dos.</span><br><br>Le Baron. – <span class="mark-latent" data-ids="mm9r2txj78xr">Eh bien ! </span><span class="mark-latent" data-ids="mm67vez4lxo1 mm9r2txj78xr">mes enfants</span><span class="mark-latent" data-ids="mm9r2txj78xr">, à quoi pensez-vous donc ?</span> Que fais-tu là, Camille, devant cette tapisserie ?<br><br><span class="mark-latent" data-ids="mm9r5zum2qcw">Camille, regardant un tableau. – Voilà un beau portrait, mon oncle ! N'est-ce pas une grand'tante à nous ?</span><br><br>Le Baron. – <span class="mark-latent" data-ids="mm9rb14jl03a">Oui, mon enfant, c'est ta bisaïeule, - ou du moins la sœur de ton bisaïeul, -</span> <span class="mark-latent" data-ids="mm9s1jwvx609">car la chère dame n'a jamais concouru, - pour sa part, je crois, autrement qu'en prières, - à l'accroissement de la famille.</span> <span class="mark-latent" data-ids="mm9s4fd7c5p9">C'était, ma foi, une sainte femme.</span><br><br>Camille. – <span class="mark-latent" data-ids="mm9s68mh9far">Oh ! oui, une sainte ! c'est ma grand'tante Isabelle. Comme ce costume religieux lui va bien !</span></div>
+  </div>
+</main>
+
+<!-- MODAL: TEXTE -->
+<div class="modal-bg" id="m-text">
+  <div class="modal">
+    <button class="modal-x" onclick="closeModal('m-text')">×</button>
+    <h2 id="mt-h">Nouveau texte</h2>
+    <div class="fg">
+      <div class="fr">
+        <div><label>Titre / Œuvre</label><input id="ft-title" placeholder="ex. Andromaque, Acte I sc.4"></div>
+        <div><label>Auteur</label><input id="ft-author" placeholder="ex. Racine"></div>
+      </div>
+      <div><label>Texte brut</label><textarea id="ft-text" rows="7" placeholder="Coller le texte intégral ici…" style="height: 17px;"></textarea></div>
+      <div><label>Accroche</label><textarea id="ft-accroche" rows="2" placeholder="ex. Dans une France déchirée par les guerres de Religion…" style="height: 17px;"></textarea></div>
+      <div><label>Problématique</label><input id="ft-pb" placeholder="ex. Comment Racine montre-t-il la passion dévastatrice ?"></div>
+      <div><label>Mouvements <span style="font-weight:300;text-transform:none;letter-spacing:0;font-size:0.64rem;">séparés par |</span></label><input id="ft-plan" placeholder="ex. La violence de la passion | L'impuissance du personnage | La fatalité"></div>
+      <div><label>Conclusion (bilan + ouverture)</label><textarea id="ft-conclu" rows="3" placeholder="ex. Ainsi Racine dépeint une passion fatale qui…" style="height: 254px;"></textarea></div>
+    </div>
+    <div class="ma">
+      <button class="btn-cancel" onclick="closeModal('m-text')">Annuler</button>
+      <button class="btn btn-a" onclick="saveText()">Enregistrer</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: AXE -->
+<div class="modal-bg" id="m-axe">
+  <div class="modal" style="width:480px">
+    <button class="modal-x" onclick="closeModal('m-axe')">×</button>
+    <h2 id="ma-h">Nouveau mouvement</h2>
+    <div class="fg">
+      <div><label>Titre du mouvement</label><input id="fa-title" placeholder="ex. La violence de la passion"></div>
+    </div>
+    <div class="ma">
+      <button class="btn-cancel" onclick="closeModal('m-axe')">Annuler</button>
+      <button class="btn btn-a" onclick="saveAxe()">Enregistrer</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: CITATION -->
+<div class="modal-bg" id="m-cit">
+  <div class="modal">
+    <button class="modal-x" onclick="closeModal('m-cit')">×</button>
+    <h2 id="mc-h">Modifier la citation</h2>
+    <div class="fg">
+      <div><label>Procédé littéraire</label><input id="fc-proc" placeholder="ex. Anaphore, Métaphore, Hyperbole…"></div>
+      <div>
+        <label>Extraits à surligner <span style="font-weight:300;text-transform:none;letter-spacing:0;font-size:0.64rem;">(coller l'exact du texte — un par champ)</span></label>
+        <div id="ext-list" style="display:flex;flex-direction:column;gap:5px;margin-bottom:6px;"><div class="ext-row"><textarea rows="2" placeholder="Coller l'extrait exact du texte…"></textarea><button type="button" class="ext-del">✕</button></div></div>
+        <button type="button" onclick="addExtField('')" style="font-family:'IBM Plex Mono',monospace;font-size:0.67rem;color:var(--accent);background:none;border:1px dashed var(--accent);border-radius:3px;padding:4px 11px;cursor:pointer;width:100%;">＋ Ajouter un extrait</button>
+      </div>
+      <div><label>Interprétation / Analyse</label><textarea id="fc-interp" rows="3" placeholder="ex. Insiste sur la folie du personnage, montre l'irrémédiable…"></textarea></div>
+      <div><label>Mouvement</label><select class="fs" id="fc-axe"><option value="">— aucun mouvement —</option><option value="mmjm5n1zx7rv">La lamentation tragique de DG</option><option value="mmjm5n1zaudh">Le projet d'ensevelissement de Manon</option><option value="mmjm5n1z9137">La scène de l'enterrement</option><option value="mmjm5n1zlz15">L’attente de la mort</option></select></div>
+    </div>
+    <div class="ma">
+      <button class="btn-cancel" onclick="closeModal('m-cit')">Annuler</button>
+      <button class="btn btn-a" onclick="saveCitation()">Enregistrer</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast" style="display: none;">✓ Fichier exporté !</div>
+
+<!-- Données (remplacées à chaque export) -->
+<script id="__db__">window.__DB__={"texts":[{"id":"mm67rf2gipoo","title":"ONBAA Acte I Scène 2","author":"Musset","text":"Le Baron. - (Perdican entre d'un côté, Camille de l'autre.) Bonjour, mes enfants ; bonjour, ma chère Camille, mon cher Perdican ! embrassez-moi, et embrassez-vous.\n\nPerdican. - Bonjour, mon père, ma sœur bien-aimée ! Quel bonheur ! que je suis heureux !\n\nCamille. - Mon père et mon cousin, je vous salue.\n\nPerdican. - Comme te voilà grande, Camille ! et belle comme le jour.\n\nLe Baron. - Quand as-tu quitté Paris, Perdican ?\n\nPerdican. - Mercredi, je crois, ou mardi. Comme te voilà métamorphosée en femme ! Je suis donc un homme, moi ? Il me semble que c'est hier que je t'ai vue pas plus haute que cela.\n\nLe Baron. - Vous devez être fatigués ; la route est longue, et il fait chaud.\n\nPerdican. – Oh ! mon Dieu, non. Regardez donc, mon père, comme Camille est jolie !\n\nLe Baron. – Allons, Camille, embrasse ton cousin.\n\nCamille. – Excusez-moi.\n\nLe Baron. – Un compliment vaut un baiser ; embrasse-la, Perdican.\n\nPerdican. – Si ma cousine recule quand je lui tends la main, je vous dirai à mon tour : Excusez-moi ; l'amour peut voler un baiser, mais non pas l'amitié.\n\nCamille. – L'amitié ni l'amour ne doivent recevoir que ce qu'ils peuvent rendre.\n\nLe Baron, à maître Bridaine. – Voilà un commencement de mauvais augure, hé ?\n\nMaître Bridaine, au baron. – Trop de pudeur est sans doute un défaut ; mais le mariage lève bien des scrupules.\n\nLe Baron, à maître Bridaine. – Je suis choqué, - blessé. - Cette réponse m'a déplu. - Excusez-moi ! Avez-vous vu qu'elle a fait mine de se signer ? - Venez ici, que je vous parle. - Cela m'est pénible au dernier point. Ce moment, qui devait m'être si doux, est complètement gâté. - Je suis vexé, piqué. - Diable ! voilà qui est fort mauvais.\n\nMaître Bridaine. – Dites-leur quelques mots ; les voilà qui se tournent le dos.\n\nLe Baron. – Eh bien ! mes enfants, à quoi pensez-vous donc ? Que fais-tu là, Camille, devant cette tapisserie ?\n\nCamille, regardant un tableau. – Voilà un beau portrait, mon oncle ! N'est-ce pas une grand'tante à nous ?\n\nLe Baron. – Oui, mon enfant, c'est ta bisaïeule, - ou du moins la sœur de ton bisaïeul, - car la chère dame n'a jamais concouru, - pour sa part, je crois, autrement qu'en prières, - à l'accroissement de la famille. C'était, ma foi, une sainte femme.\n\nCamille. – Oh ! oui, une sainte ! c'est ma grand'tante Isabelle. Comme ce costume religieux lui va bien !","accroche":"Le théâtre est le seul genre littéraire destiné à être joué et non lu. Au début du 19ème siècle, le chef de file du romantisme, Victor Hugo, théorise dans la préface de Cromwell une nouvelle esthétique théâtrale. Il prône l'abandon des règles classiques et l'alliance du sublime et du grotesque, afin de représenter la réalité dans son ensemble. En 1830, après l'échec cuisant de sa première mise en scène, Alfred de Musset prend une décision radicale : il continuera d'être dramaturge mais ses pièces ne seront pas jouées. Ainsi paraît On ne badine pas avec l'amour dans Le Théâtre dans un fauteuil, un proverbe aux forts accents de drame romantique mettant en scène les amours de Camille et Perdican, empêchées par leur orgueil et leur éducation. La scène 2 de l'acte I est la prolongation de la scène d'exposition. Le Baron annonce à ses fantoches ses projets de mariage pour Camille et Perdican. Leur rencontre est donc organisée dans cet extrait, que nous allons analyser.","problematique":"En quoi cette scène de retrouvailles permet de dessiner les portraits des protagonistes et d'installer la mésentente à l'origine du drame ?","conclusion":"Ainsi, la scène 2 de l’acte I prolonge la scène d’exposition et infléchit sa tonalité comique en installant la mésentente entre les deux jeunes gens que l’on cherche à unir, ainsi que l’orgueil blessé du Baron dont l’autorité est bafouée. La forte symétrie de la scène vise non à rapprocher, mais à éloigner les deux héros. Elle renvoie au thème tragique de l’amour empêché, lisible dans les mouvements scéniques : entrées opposées, impossibilité de l’embrassade, dos tournés en fin de scène. La mésentente est immédiate et révèle deux caractères opposés : Perdican, enthousiaste et sensible à la beauté du monde, et Camille, plus complexe, qui se réfugie dans la religion pour refuser le projet matrimonial. La frustration du Baron constitue un contrepoint comique. Cette scène annonce enfin la scène 5 de l’acte II, où s’affrontent clairement leurs deux conceptions de l’amour : l’absolu divin pour Camille, l’acceptation de l’imperfection humaine pour Perdican.","axes":[{"id":"mm67rf2gajp5","title":"La rencontre amoureuse gâchée par Camille"},{"id":"mm67rf2gmujr","title":"La profonde déception et l’orgueil piqué du baron"},{"id":"mm67rf2g5wr0","title":"Le Baron s'entretient avec Camille"}],"citations":[{"id":"mm67s4obhkn6","proc":"Didascalie","interp":"Les héros sont dorénavant opposé spatialement","colorClass":"h1","axeId":"mm67rf2gajp5","extraits":["(Perdican entre d'un côté, Camille de l'autre.)"]},{"id":"mm67srpmq9c1","proc":"Prise de parole","interp":"Le Baron parle en premier, il est le metteur en scène de la rencontre. Pour lui ce mariage est un retour sur investissement.","colorClass":"h2","axeId":"mm67rf2gajp5","extraits":["Le Baron. - ("]},{"id":"mm67vez4lxo1","proc":"Répétition des marques de la 1ère personne","interp":"Le Baron est centré sur lui même.","colorClass":"h3","axeId":"mm67rf2gajp5","extraits":["mes enfants","ma chère","mon cher","embrassez-moi"]},{"id":"mm67x2cgzcxc","proc":"Impératif","interp":"Le baron force pour les rassembler.","colorClass":"h4","axeId":"mm67rf2gajp5","extraits":["embrassez-moi, et embrassez-vous."]},{"id":"mm6800s2msgy","proc":"Hypocoristiques","interp":"Perdican répond positivement, son affection.","colorClass":"h1","axeId":"mm67rf2gajp5","extraits":["ma chère","mon cher","ma sœur bien-aimée"]},{"id":"mm6842mdxg42","proc":"! intensifs, déterminant + adverbe exclamatifs","interp":"Enthousiasme de P","colorClass":"h2","axeId":"mm67rf2gajp5","extraits":["bien-aimée ! Quel bonheur ! que je suis heureux !"]},{"id":"mm685hs44kus","proc":"Prise de parole","interp":"Réponse froide de camille","colorClass":"h3","axeId":"mm67rf2gajp5","extraits":["Camille. - Mon père et mon cousin, je vous salue."]},{"id":"mm687lfm77yf","proc":"Antithèse","interp":"C met de la distance.","colorClass":"h4","axeId":"mm67rf2gajp5","extraits":["ma sœur","mon cousin"]},{"id":"mm68gydbk9jg","proc":"Remarque sur le physique + comparaison","interp":"Insiste sur l'évolution + comparaison banale mais lyrique et flatteuse","colorClass":"h1","axeId":"mm67rf2gajp5","extraits":["Comme te voilà grande, Camille ! et belle comme le jour."]},{"id":"mm68jmf96y5g","proc":"Comique de situation + Q","interp":"Camille ne répond pas au compliment, comique de situation. Le baron pose donc une question sans importance.","colorClass":"h2","axeId":"mm67rf2gajp5","extraits":["Quand as-tu quitté Paris, Perdican ?"]},{"id":"mm68klnm15kd","proc":"épanorthose","interp":"La Q n'avait pas d’intérêt","colorClass":"h3","axeId":"mm67rf2gajp5","extraits":["Mercredi, je crois, ou mardi."]},{"id":"mm68vt9foqog","proc":"Présentatif","interp":"P montre que C est devenue une femme, terme qui renvoie aussi au fait qu’elle est prête pour le mariage.","colorClass":"h4","axeId":"mm67rf2gajp5","extraits":["Comme te voilà métamorphosée en femme !"]},{"id":"mm68za64sdop","proc":"Q réthorique","interp":"Aspect corrélatif : complicité","colorClass":"h1","axeId":"mm67rf2gajp5","extraits":["Je suis donc un homme, moi ?"]},{"id":"mm68zzqs64lr","proc":"Remarque","interp":"banale mais continue d'instaurer une complicité","colorClass":"h2","axeId":"mm67rf2gajp5","extraits":["Il me semble que c'est hier que je t'ai vue pas plus haute que cela."]},{"id":"mm692sgm9jr1","proc":"2x Comique + énumération","interp":"C ne répond toujours pas, le Baron cherche des explications","colorClass":"h3","axeId":"mm67rf2gajp5","extraits":["Le Baron. - Vous devez être fatigués ; la route est longue, et il fait chaud."]},{"id":"mm6965ubr0pb","proc":"interjection + exclamation + injonctif + apostophe","interp":"P toujours enthousiaste, réfute les explications du baron et l'invite à constater la beauté de C","colorClass":"h4","axeId":"mm67rf2gajp5","extraits":["Oh ! mon Dieu, non. Regardez donc, mon père, comme Camille est jolie !"]},{"id":"mm697t8jv8b5","proc":"3x Comique de situation + répétition maintenant, injonction","interp":"C ne répond toujours pas, le Baron appel à la raison","colorClass":"h1","axeId":"mm67rf2gajp5","extraits":["Allons, Camille, embrasse ton cousin"]},{"id":"mm698rzpsrb3","proc":"Vouvoiement","interp":"Nouvelle réponse froide de C, mise à distance","colorClass":"h2","axeId":"mm67rf2gajp5","extraits":["Excusez-moi."]},{"id":"mm9mfl1y88y2","proc":"impératif","interp":"Le baron énonce une règle qui montre son obsession pour les échanges économiques puis il donne un ordre à P","colorClass":"h3","axeId":"mm67rf2gajp5","extraits":["Un compliment vaut un baiser ; embrasse-la, Perdican."]},{"id":"mm9mgznfrl27","proc":"Didascalie interne","interp":"Les deux héros se repoussent","colorClass":"h4","axeId":"mm67rf2gajp5","extraits":["Si ma cousine recule quand"]},{"id":"mm9mi6qd3wht","proc":"répétition","interp":"attitude mimétique + refus de l'autorité du Baron","colorClass":"h1","axeId":"mm67rf2gajp5","extraits":["à mon tour : Excusez-moi"]},{"id":"mm9mktfv95ur","proc":"mais adversatif + négation totale","interp":"P place leur relation sur le plan amical","colorClass":"h2","axeId":"mm67rf2gajp5","extraits":["l'amour peut voler un baiser, mais non pas l'amitié"]},{"id":"mm9mnaqpe3u0","proc":"Proverbe","interp":"Camille dit poliment ne ressentir ni amour ni amitié pour son cousin","colorClass":"h3","axeId":"mm67rf2gajp5","extraits":["L'amitié ni l'amour ne doivent recevoir que ce qu'ils peuvent rendre."]},{"id":"mm9n1cw5u5vg","proc":"Présentatif + interjection","interp":"le plan du Baron se passe mal, on voit son dépit","colorClass":"h4","axeId":"mm67rf2gmujr","extraits":["Voilà un commencement de mauvais augure, hé ?"]},{"id":"mm9ob2sq1ouf","proc":"Présent gnomique + litote + mais adversatif","interp":"Tente de rassurer le baron + critique des religieux, bridaine étant un curé","colorClass":"h1","axeId":"mm67rf2gmujr","extraits":["Trop de pudeur est sans doute un défaut ; mais le mariage lève bien des scrupules."]},{"id":"mm9ocqnwg57p","proc":"parralélisme + rythme binaire","interp":"Insiste sur sa déception","colorClass":"h2","axeId":"mm67rf2gmujr","extraits":["– Je suis choqué, - blessé.","- Je suis vexé, piqué. -"]},{"id":"mm9pxs9vgx23","proc":"Comique de répétition + de situation, didascalie interne","interp":"imitation + caricature Camille, pour Le Baron, la foi ne peut relever que d'une pose et en aucun cas n'être une attitude sincère.","colorClass":"h3","axeId":"mm67rf2gmujr","extraits":["Excusez-moi ! Avez-vous vu qu'elle a fait mine de se signer ?"]},{"id":"mm9q84pahtaa","proc":"proposition subordonnée relative","interp":"échec total constaté, déception","colorClass":"h4","axeId":"mm67rf2gmujr","extraits":["Ce moment, qui devait m'être si doux, est complètement gâté."]},{"id":"mm9q9yknchjn","proc":"Juron (commique de mot) + présentatif","interp":"pessimisme, son plan est un échec","colorClass":"h1","axeId":"mm67rf2gmujr","extraits":["Diable ! voilà qui est fort mauvais."]},{"id":"mm9r0k2renzx","proc":"didascalie interne","interp":"Bridaine encourage le Baron à parler aux jeunes gens et commente leur attitude physiqu, ils sont encore opposés mais symétriques","colorClass":"h2","axeId":"mm67rf2gmujr","extraits":["Dites-leur quelques mots ; les voilà qui se tournent le dos."]},{"id":"mm9r2txj78xr","proc":"locution interjective + Q partielle","interp":"les faire réagir + souligne leur éloignement commun, chacun étant plongé dans une contemplation et une activité différente","colorClass":"h3","axeId":"mm67rf2g5wr0","extraits":["Eh bien ! mes enfants, à quoi pensez-vous donc ?"]},{"id":"mm9r5zum2qcw","proc":"didascalie avec participe présent + présentatif + ! + Q","interp":"Camille est absorbée dans la contemplation d'un portrait qui représente une ancêtre religieuse de la famille.","colorClass":"h4","axeId":"mm67rf2g5wr0","extraits":["Camille, regardant un tableau. – Voilà un beau portrait, mon oncle ! N'est-ce pas une grand'tante à nous ?"]},{"id":"mm9rb14jl03a","proc":"épanorthose","interp":"Le baron éprouve peut d’intérêt à cette religieuse","colorClass":"h1","axeId":"mm67rf2g5wr0","extraits":["Oui, mon enfant, c'est ta bisaïeule, - ou du moins la sœur de ton bisaïeul, -"]},{"id":"mm9s1jwvx609","proc":"hypocoristique ironique, verbe modélisateur, négation restricive","interp":"le Baron n'a pas vraiment de respect pour celle ci, il introduit une potentielle erreur et donc une fausse vertu","colorClass":"h2","axeId":"mm67rf2g5wr0","extraits":["car la chère dame n'a jamais concouru, - pour sa part, je crois, autrement qu'en prières, - à l'accroissement de la famille."]},{"id":"mm9s4fd7c5p9","proc":"locution interjective familière + pas de !","interp":"jeu de mot : le terme « foi » dans la bouche du Baron est décralisé. Contraste entre sa vision de la religion et celle de cette parente + pas d’admiration particulière","colorClass":"h3","axeId":"mm67rf2g5wr0","extraits":["C'était, ma foi, une sainte femme."]},{"id":"mm9s68mh9far","proc":"Interjection + adverbe \"oui\" + 2 exclamations","interp":"enthousiasme + admiration : annonce que ce qui interesse Camille, c’est l’amour storgê : obstacle à l’intrigue amoureuse.","colorClass":"h4","axeId":"mm67rf2g5wr0","extraits":["Oh ! oui, une sainte ! c'est ma grand'tante Isabelle. Comme ce costume religieux lui va bien !"]}]},{"id":"mmaqpkcyu65r","title":"ONBAA Acte II Scène 5","author":"Musset","text":"CAMILLE. Vous me faites peur ; la colère vous prend aussi. \n\nPERDICAN. Sais-tu ce que c'est que des nonnes, malheureuse fille ? Elles qui te représentent l'amour des \n\t\nhommes comme un mensonge, savent-elles qu'il y a pis encore, le mensonge de l'amour divin ? Savent-\n\nelles que c'est un crime qu'elles font de venir chuchoter à une vierge des paroles de femme ? Ah ! Comme \n\nelles t'ont fait la leçon ! Comme j'avais prévu tout cela quand tu t'es arrêtée devant le portrait de notre \n\nvieille tante ! Tu voulais partir sans me serrer la main ; tu ne voulais revoir ni ce bois, ni cette pauvre petite \n\nfontaine qui nous regarde tout en larmes ; tu reniais les jours de ton enfance et le masque de plâtre que les \n\nnonnes t'ont plaqué sur les joues me refusait un baiser de frère ; mais ton cœur a battu ; il a oublié sa \n\nleçon, lui qui ne sait pas lire, et tu es revenue t'asseoir sur l'herbe où nous voilà. Eh bien ! Camille, ces \n\nfemmes ont bien parlé; elles t'ont mise dans le vrai chemin ; il pourra m'en coûter le bonheur de ma vie ; \n\nmais dis-leur cela de ma part : le ciel n'est pas pour elles.\n\nCAMILLE. Ni pour moi, n'est-ce pas ?\n\nPERDICAN. Adieu, Camille, retourne à ton couvent, et lorsqu'on te fera de ces récits hideux qui t'ont \n\nempoisonnée, réponds ce que je vais te dire : Tous les hommes sont menteurs, inconstants, faux, bavards, \n\nhypocrites, orgueilleux ou lâches, méprisables et sensuels ; toutes les femmes sont perfides, artificieuses,\n\nvaniteuses, curieuses et dépravées ; le monde n'est qu'un égout sans fond où les phoques les plus informes\n\nrampent et se tordent sur des montagnes de fange ; mais il y a au monde une chose sainte et sublime, c'est\n\nl'union de deux de ces êtres si imparfaits et si affreux. On est souvent trompé en amour, souvent blessé et \n\nsouvent malheureux ; mais on aime, et quand on est sur le bord de sa tombe, on se retourne pour regarder \n\nen arrière, et on se dit : J'ai souffert souvent, je me suis trompé quelquefois, mais j'ai aimé. C'est moi qui ai \n\nvécu, et non pas un être factice créé par mon orgueil et mon ennui.\n\n                                                                                                                                                                Il sort.","accroche":"Le théâtre est le seul genre littéraire destiné à être joué et non lu. Au début du 19ème siècle, le chef de file du romantisme, Victor Hugo, théorise dans la préface de Cromwell une nouvelle esthétique théâtrale. Il prône l'abandon des règles classiques et l'alliance du sublime et du grotesque, afin de représenter la réalité dans son ensemble. En 1830, après l'échec cuisant de sa première mise en scène, Alfred de Musset prend une décision radicale : il continuera d'être dramaturge mais ses pièces ne seront pas jouées. Ainsi paraît On ne badine pas avec l'amour dans Le Théâtre dans un fauteuil, un proverbe aux forts accents de drame romantique mettant en scène les amours de Camille et Perdican, empêchées par leur orgueil et leur éducation. La scène 5 de l’acte II donne à entendre un affrontement entre les deux jeunes héros. C annonce à P qu'elle compte devenir religieuse, en partie à cause du discours de ses amies du couvent qui l'ont mise en garde contre les souffrances de l'amour éros. P dénonce leur hypocrisie et affirme sa foie envers l'amour humain.","problematique":"En quoi Musset, à travers Perdican, fournit-il à la fois une critique des religieuses et un éloge de l’amour humain ?","conclusion":"Ainsi, cette scène de confrontation donne à entendre deux tirades successives de Perdican : d’abord polémique, il dénonce l’hypocrisie des religieuses, puis il adopte un ton lyrique pour célébrer l’amour humain dans son imperfection. À l’imaginaire mortifère du couvent, il oppose celui du jeune romantique exalté, dont Musset fait son porte-parole. L’hypocrisie, comparée à un « masque de plâtre », est au cœur de son discours, et seul l’amour apparaît comme antidote, révélant la vérité des sentiments à travers la souffrance. Cependant, malgré leur quête d’absolu, les deux héros s’éloignent par leurs paroles. \nPerdican exprimera de nouveau son lyrisme amoureux à l’acte III, scène 3, face à Rosette, l'anti Camille , mais son orgueil — qu’il condamne sans en être indemne — le mènera à la catastrophe, car « on ne badine pas avec l’amour ».","axes":[{"id":"mmaqpkcy4k72","title":"Un réquisitoire sévère contre le couvent"},{"id":"mmaqpkcynanf","title":"L’appel romantique au souvenir et au sentiment"},{"id":"mmaqpkcyzckm","title":"Un message pour les nonnes ignorantes et malfaisantes"},{"id":"mmaqpkcy2k6b","title":"La défense d’un amour imparfait mais sublime"}],"citations":[{"id":"mmaqz7ueq4ud","proc":"Disascalie interne","interp":"Indique le ton de la réplique précédente","colorClass":"h1","axeId":"mmaqpkcy4k72","extraits":["Vous me faites peur ; la colère vous prend aussi."]},{"id":"mmar2bkq8dyo","proc":"Pronoms + adverbe d’égalité + sentiments","interp":"Les deux persos perdent la maîtrise d’eux-mêmes : c’est le sentiment « colère » qui agit, P en est victime comme tout comme C quelques répliques plus tôt.","colorClass":"h2","axeId":"mmaqpkcy4k72","extraits":["Vous me","vous prend","aussi","peur ; la colère"]},{"id":"mmarll2pnunn","proc":"Tutoiment + apostrophe","interp":"P prend un position dominante en tutoyant C et en prend un ton condescendant --> pitié devant son ignorance, sa naïveté.","colorClass":"h3","axeId":"mmaqpkcy4k72","extraits":["Sais-tu ce que c'est que des nonnes, malheureuse fille ?"]},{"id":"mmarnim3lita","proc":"3x Question rhétorique + anaphore du verbe savoir","interp":"Insiste sur l'ignorance de C et des Nonnes.","colorClass":"h4","axeId":"mmaqpkcy4k72","extraits":["Sais-tu ce que c'est que des nonnes, malheureuse fille ? Elles qui te représentent l'amour des","hommes comme un mensonge, savent-elles qu'il y a pis encore, le mensonge de l'amour divin ? Savent-","elles que c'est un crime qu'elles font de venir chuchoter à une vierge des paroles de femme ?"]},{"id":"mmas07ucmi20","proc":"Périphrase + verbe + comparaison d'égalité","interp":"Les nonnes (Elles) modifie la réalité en représentant un tableau factice : cette comparaison","colorClass":"h1","axeId":"mmaqpkcy4k72","extraits":["Elles qui te représentent l'amour des","hommes comme un mensonge"]},{"id":"mmasjl0ds9nl","proc":"P reprend le terme \"mensonge\"","interp":"P retourne le terme de mensonge pour l’associer à l'amour Agapê : sacrilège, libertin de pensée","colorClass":"h2","axeId":"mmaqpkcy4k72","extraits":["savent-elles qu'il y a pis encore, le mensonge de l'amour divin ?"]},{"id":"mmaz26hhb9gn","proc":"paradoxe","interp":"P insinue que les nonnes commettent un péché ce qui est en total contradiction avec leur statut","colorClass":"h3","axeId":"mmaqpkcy4k72","extraits":["c'est un crime"]},{"id":"mmazblq6sckb","proc":"verbe infinif, COD","interp":"\"chuchoter\" renvoie à la manipulation, tandis que les nonnes profèrent des paroles de femmes qui n'ont rien de sacré.","colorClass":"h4","axeId":"mmaqpkcy4k72","extraits":["chuchoter à une vierge des paroles de femme"]},{"id":"mmazfffwf655","proc":"Interjection + adverbe exclamarif + !, C en COD","interp":"P est sidéré face à C qui s'est laissé manipulée par les nonnes","colorClass":"h1","axeId":"mmaqpkcy4k72","extraits":["Ah ! Comme","elles t'ont fait la leçon !"]},{"id":"mmazir7lekml","proc":"+ que parfait","interp":"P est lucide et épris d’amertume face à cet situation","colorClass":"h2","axeId":"mmaqpkcy4k72","extraits":["j'avais prévu"]},{"id":"mmb3hgn7ng47","proc":"Anaphore de \"tu\" + Mais adversatif + métonymie \"ton coeur\"","interp":"la jeune fille serait d’après Perdican scindée entre les discours appris et ce que lui dicteraient ses sentiments. Opposition culture/nature","colorClass":"h3","axeId":"mmaqpkcynanf","extraits":["Tu voulais","tu ne voulais","tu reniais","mais ton cœur a battu"]},{"id":"mmb3m3n7fwep","proc":"négation + champ lexical du refus","interp":"Avec la culture : C repoussait son enfance","colorClass":"h4","axeId":"mmaqpkcynanf","extraits":["r sans m","ne voulais revoir ni ce bois, ni","tu reniais","me refusait"]},{"id":"mmb3ut6ouzb3","proc":"PSR, lyrisme/pathétique/romantique","interp":"La fontaine représente la pureté, innocence. La PSR amène un cadre lyrique pathétique et romantique à la scène. Avec la culture : C renie tout cela.","colorClass":"h1","axeId":"mmaqpkcynanf","extraits":["cette pauvre petite","fontaine qui nous regarde tout en larmes"]},{"id":"mmb4wk5wbmou","proc":"Métaphore","interp":"Le \"masque de plâtre\" revoie encore une fois à l'éducation religieuse, selon P, elle pousse à jouer un rôle, voire même est mortifère.","colorClass":"h2","axeId":"mmaqpkcynanf","extraits":["le masque de plâtre"]},{"id":"mmb53wi7vrfm","proc":"C en COD","interp":"C subit l’éducation des nonnes, elle refuse même \"un baiser de frère\", symbolisant l’affection innocente.","colorClass":"h3","axeId":"mmaqpkcynanf","extraits":["t'ont plaqué sur les joues me refusait un baiser de frère"]},{"id":"mmb56nx26nq9","proc":"négation totale, métaphore filée","interp":"Le coeur et donc la nature s'est révolté, elle a rejeté l'éducation.","colorClass":"h4","axeId":"mmaqpkcynanf","extraits":["mais ton cœur a battu ; il a oublié sa","leçon, lui qui ne sait pas lire"]},{"id":"mmb5jxrzhpqq","proc":"lyrisme, présentatif, \"locus amuenus\"","interp":"Cela a poussé C à venir voir P, dans ce cadre lyrique/\"locus amuenus\", apte à l'expression des sentiments","colorClass":"h1","axeId":"mmaqpkcynanf","extraits":["et tu es revenue t'asseoir sur l'herbe où nous voilà."]},{"id":"mmb6b28xcejy","proc":"Interjection + antiphrase","interp":"P exprime une critique ironique. C est manipulée : Paradoxe de l’éducation religieuse qui ment et égare.","colorClass":"h2","axeId":"mmaqpkcyzckm","extraits":["Eh bien ! Camille, ces","femmes ont bien parlé; elles t'ont mise dans le vrai chemin"]},{"id":"mmb6f0exhpgj","proc":"futur + périphrase","interp":"prolepse, annonce du sort funeste + aveu indirect de l'amour qu'il porte pour C","colorClass":"h3","axeId":"mmaqpkcyzckm","extraits":["il pourra m'en coûter le bonheur de ma vie"]},{"id":"mmb6ix2zkstd","proc":"impératif + négation totale","interp":"Mais la colère l’emporte dans le message final à transmettre aux religieuses. P se place en juge : les nonnes se trompent, elles seront punies. --> paradoxe","colorClass":"h4","axeId":"mmaqpkcyzckm","extraits":["mais dis-leur cela de ma part : le ciel n'est pas pour elles."]},{"id":"mmb7nv5b1ftb","proc":"Syllogisme + Q","interp":"Les nonnes ne méritent pas le ciel, C se destine à être nonne⇒C ne mérite pas le ciel. La question laisse une chance à P de faire une exception","colorClass":"h1","axeId":"mmaqpkcyzckm","extraits":["Ni pour moi, n'est-ce pas ?"]},{"id":"mmc0w6z3q9b6","proc":"Interjection + apostrophe","interp":"rupture, une séparation définitive","colorClass":"h2","axeId":"mmaqpkcyzckm","extraits":["Adieu, Camille,"]},{"id":"mmc15hj95wj6","proc":"futur + PSR","interp":"P à la certitude que C est malade, sous leur emprise, loin de sa réelle personnalité.","colorClass":"h3","axeId":"mmaqpkcyzckm","extraits":["on te fera de ces récits hideux qui t'ont","empoisonnée"]},{"id":"mmc1cq9lir5y","proc":"Tableau global de l’humanité en 3 temps : les hommes, les femmes, le monde","interp":"P offre une critique outrancière, caricaturale de l’humanité","colorClass":"h4","axeId":"mmaqpkcyzckm","extraits":["Tous les hommes sont menteurs, inconstants, faux, bavards,","hypocrites, orgueilleux ou lâches, méprisables et sensuels ; toutes les femmes sont perfides, artificieuses,","vaniteuses, curieuses et dépravées ; le monde n'est qu'un égout sans fond où les phoques les plus informes","rampent et se tordent sur des montagnes de fange"]},{"id":"mmc1rhlwuwxl","proc":"Tout globalisant + énumération hyperbolique de vices, parralélisme H/F","interp":"Portrait particulièrement pessimiste et sans espoir de l’humanité toute entière, où hommes et femmes sont renvoyés dos à dos pour leur fausseté, vanité et débauche","colorClass":"h1","axeId":"mmaqpkcyzckm","extraits":["Tous les hommes sont menteurs, inconstants, faux, bavards,","hypocrites, orgueilleux ou lâches, méprisables et sensuels","toutes les femmes sont perfides, artificieuses,","vaniteuses, curieuses et dépravées"]},{"id":"mmc22w62a7rc","proc":"métaphore restrictive/hyperbolique + superlatif","interp":"Ces défauts moraux énumérés des deux sexes conduisent naturellement à une image très péjorative du monde dans sa totalité","colorClass":"h2","axeId":"mmaqpkcyzckm","extraits":["le monde n'est qu'un égout sans fond où les phoques les plus informes","rampent et se tordent sur des montagnes de fange"]},{"id":"mmc25i76aqf2","proc":"mais adversatif + présentatif","interp":"P veut mettre en valeur un caractère exceptionnel et singulier","colorClass":"h3","axeId":"mmaqpkcy2k6b","extraits":["mais il y a au monde une chose sainte et sublime"]},{"id":"mmc2fb16grl3","proc":"paradoxe ajd/sublime, adverbes intensifs","interp":"Le grotesque appuyé peut conduire au sublime : espoir en l’humanité à travers l’amour. Accepter l’imperfection des êtres pour permettre l’amour.","colorClass":"h4","axeId":"mmaqpkcy2k6b","extraits":["l'union de deux de ces êtres si imparfaits et si affreux"]},{"id":"mmc2m678adbr","proc":"Proverbe : Pronom pers indéf « on » + voie passive + anaphore souvent","interp":"P associe l'amour à la souffrance subie","colorClass":"h1","axeId":"mmaqpkcy2k6b","extraits":["On est souvent trompé en amour, souvent blessé et","souvent malheureux"]},{"id":"mmc2umexqrj5","proc":"mais adversatif + voie active","interp":"justification : simple courte, toute puissante","colorClass":"h2","axeId":"mmaqpkcy2k6b","extraits":["mais on aime"]},{"id":"mmc3aj797bch","proc":"métaphore","interp":"Métaphore des derniers instants où on fait un bilan de notre vie","colorClass":"h3","axeId":"mmaqpkcy2k6b","extraits":["quand on est sur le bord de sa tombe, on se retourne pour regarder","en arrière"]},{"id":"mmc43e3s126d","proc":"Indications temporelles + mais + passé composé","interp":"Par une dimension universelle introduite par le \"je\",  on réduit progressivement les erreurs.\nPassé composé : montre l’aspect impermanent de la vie, de la souffrance comme de l’amour","colorClass":"h4","axeId":"mmaqpkcy2k6b","extraits":["J'ai souffert souvent, je me suis trompé quelquefois, mais j'ai aimé"]},{"id":"mmc6w341gk4g","proc":"présentatif, négation","interp":"P promeut l’authenticité du Je, s'opposant au \"masque de plâtre\" des nonnes, la négation insinue que ces dernières sont bouffies, elles créent des êtres factices dans leur couvent.","colorClass":"h1","axeId":"mmaqpkcy2k6b","extraits":["C'est moi qui ai","vécu, et non pas un être factice créé par mon orgueil et mon ennui."]}]},{"id":"mmcb931vk8xa","title":"ONBAA Acte III Scène 3","author":"Musset","text":"CAMILLE, cachée, à part. Que veut dire cela ? Il la fait asseoir près de lui ? Me demande-t-il un rendez-vous pour y venir causer avec une autre ? Je suis curieuse de savoir ce qu'il lui dit. \n\nPERDICAN, à haute voix, de manière que Camille l'entende. Je t'aime, Rosette ! Toi seule au monde, tu n'as rien oublié de nos beaux jours passés ; toi seule, tu te souviens de la vie qui n'est plus ; prends ta part de ma vie nouvelle ; donne-moi ton cœur, chère enfant ; voilà le gage de notre amour.\n\nIl lui pose sa chaîne sur le cou. \n\nROSETTE. Vous me donnez votre chaîne d'or ? \n\nPERDICAN. Regarde à présent cette bague. Lève-toi, et approchons-nous de cette fontaine. Nous vois-tu tous les deux, dans la source, appuyés l'un sur l'autre ? Vois-tu tes beaux yeux près des miens, ta main dans la mienne ? Regarde tout cela s'effacer. (Il jette sa bague dans l'eau). Regarde comme notre image a disparu ; la voilà qui revient peu à peu ; l'eau qui s'était troublée reprend son équilibre ; elle tremble encore ; de grands cercles noirs courent à sa surface ; patience, nous reparaissons ; déjà je distingue de nouveau tes bras enlacés dans les miens ; encore une minute, et il n'y aura plus une ride sur ton joli visage ; regarde ! c'était une bague que m'avait donnée Camille. \n\nCAMILLE, à part. Il a jeté ma bague dans l'eau ! \n\nPERDICAN. Sais-tu ce que c'est que l'amour, Rosette ? Écoute ! Le vent se tait ; la pluie du matin roule en perles sur les feuilles séchées que le soleil ranime. Par la lumière du ciel, par le soleil que voilà, je t'aime ! Tu veux bien de moi, n'est-ce pas ? On n'a pas flétri ta jeunesse ? on n'a pas infiltré dans ton sang vermeil les restes d'un sang affadi ? Tu ne veux pas te faire religieuse ; te voilà jeune et belle dans les bras d'un jeune homme ; ô Rosette, Rosette ! sais-tu ce que c'est que l'amour ?","accroche":"Le théâtre est le seul genre littéraire destiné à être joué et non lu. Au début du 19ème siècle, le chef de file du romantisme, Victor Hugo, théorise dans la préface de Cromwell une nouvelle esthétique théâtrale. Il prône l'abandon des règles classiques et l'alliance du sublime et du grotesque, afin de représenter la réalité dans son ensemble. En 1830, après l'échec cuisant de sa première mise en scène, Alfred de Musset prend une décision radicale : il continuera d'être dramaturge mais ses pièces ne seront pas jouées. Ainsi paraît On ne badine pas avec l'amour dans Le Théâtre dans un fauteuil, un proverbe aux forts accents de drame romantique mettant en scène les amours de Camille et Perdican, empêchées par leur orgueil et leur éducation. Perdican rejeté par Camille, par dépit amoureux et par orgueil, décide de la rendre jalouse. Il s’arrange pour que Camille assiste à la fausse déclaration d’amour qu’il fait à Rosette afin qu’elle entende son double discours. Cette scène constitue un tournant dans la pièce.","problematique":"Comment ce stratagème amoureux dévoile-t-il le caractère manipulateur mais aussi romantique de Perdican?","conclusion":"Ainsi, dans ce stratagème amoureux, P est le véritable metteur en scène voire marionnettiste\ndictant tout ses gestes et le regard de Rosette. Il l’utilise en ne lui montrant que des illusions servant à provoquer la jalousie de C. Il livre une déclaration d’amour très lyrique pour la convaincre, sans manquer d’y faire d’évidentes références à C mettant en valeur les qualités de Rosette à l’opposé de C. Ce caractère manipulateur de P et ce stratagème ne sont pas sans rappeler la scène 6 de l’acte III où cette fois-ci c’est C qui sera metteuse en scène à la place de P, laissant R spectatrice. Son objectif est de faire avouer ses sentiments envers elle à P, prouvant cruellement à R la manipulation qu’elle à subie.","axes":[{"id":"mmcb931vv1ny","title":"La mise en scène d’une fausse déclaration d’amour"},{"id":"mmcb931vzdfb","title":"Le stratagème de la bague"},{"id":"mmcb931vtimp","title":"Une expression romantique de l’amour d’une grande duplicité"}],"citations":[{"id":"mmcbiqbwpx9h","proc":"aparté","interp":"Comédie, annonce jeu pour le spectateur avec la double énonciation","colorClass":"h1","axeId":"mmcb931vv1ny","extraits":["CAMILLE, cachée, à part"]},{"id":"mmcblp66ky0h","proc":"enum de 3 Q rhétoriques","interp":"montre la curiosité de C, sa surprise mais aussi son inquétude","colorClass":"h2","axeId":"mmcb931vv1ny","extraits":["Que veut dire cela ?","Il la fait asseoir près de lui ?","Me demande-t-il un rendez-vous pour y venir causer avec une autre ?"]},{"id":"mmcbp53byfo2","proc":"Démonstatif","interp":"C est dans l’incompréhension","colorClass":"h3","axeId":"mmcb931vv1ny","extraits":["Que veut dire cela ?"]},{"id":"mmcbr8ha7xuh","proc":"Didascalie interne","interp":"P dirige la scène + opère un rapprochement dans l’intimité","colorClass":"h4","axeId":"mmcb931vv1ny","extraits":["Il la fait asseoir près de lui ?"]},{"id":"mmcbu45ywmj7","proc":"Paradoxe","interp":"Agacement de C. R est anonymisée avec le terme \"une autre\"","colorClass":"h1","axeId":"mmcb931vv1ny","extraits":["Me demande-t-il un rendez-vous pour y venir causer avec une autre ?"]},{"id":"mmcbvsr4j3b4","proc":"Aparté + CCM","interp":"P utilise un jeu d'acteur exagéré.","colorClass":"h2","axeId":"mmcb931vv1ny","extraits":["PERDICAN, à haute voix, de manière que Camille l'entende."]},{"id":"mmcbytgszujf","proc":"topos + apostrophe + !","interp":"Déclaration d'amour classique mais brutale et soudaine.","colorClass":"h3","axeId":"mmcb931vv1ny","extraits":["Je t'aime, Rosette !"]},{"id":"mmcc0gi4jzzh","proc":"Anaphore de \"toi seule\"","interp":"Éloge de R et de son unicité.","colorClass":"h4","axeId":"mmcb931vv1ny","extraits":["Toi seule au monde,","toi seule"]},{"id":"mmcc28757r7g","proc":"litote","interp":"Éloge de l'enfance, R se souvient de cette enfance : allusion à C qui elle la refuse.","colorClass":"h1","axeId":"mmcb931vv1ny","extraits":["tu n'as rien oublié de nos beaux jours passés","tu te souviens de la vie qui n'est plus"]},{"id":"mmcc6jiu9c6x","proc":"impératifs, métaphore","interp":"Encouragement à rejoindre sa vie, marché inéquitable, elle\ndonne tout son cœur alors qu’il donne une petite partie de sa vie","colorClass":"h2","axeId":"mmcb931vv1ny","extraits":["prends ta part de ma vie nouvelle","donne-moi ton cœur"]},{"id":"mmcc874efta3","proc":"Présetatif + didascalie","interp":"R n’a pas annoncé la réciprocité mais P affirme qu’elle l’aime, chaîne=contrainte/prisonnière","colorClass":"h3","axeId":"mmcb931vv1ny","extraits":["voilà le gage de notre amour.\n\nIl lui pose sa chaîne sur le cou."]},{"id":"mmcccvsyqqkm","proc":"Q","interp":"R est surprise, l'or montre la valeur du présent","colorClass":"h4","axeId":"mmcb931vv1ny","extraits":["Vous me donnez votre chaîne d'or ?"]},{"id":"mmcck6iqy26x","proc":"Impératifs, synectodote + épanadiplose, métaphore filée","interp":"P met en scène les mouvement et le regard. La bague désigne l'amour entre P et C. Le thème du regard sur la scène qu'on peut aussi comprendre comme une métaphore filée de l'amour.","colorClass":"h1","axeId":"mmcb931vzdfb","extraits":["Regarde à présent cette bague. Lève-toi, et approchons-nous de cette fontaine.","Regarde","regarde !"]},{"id":"mmccmhvqygsz","proc":"Q rhétoriques + gradation, topoi","interp":"Insiste sur leur union, leur rapprochement physique + intimité. Mais tout ceci n'est qu'un reflet.","colorClass":"h2","axeId":"mmcb931vzdfb","extraits":["tous les deux","l'un sur l'autre","tes beaux yeux près des miens","ta main dans la mienne"]},{"id":"mmccw9h42601","proc":"Pronom globalisant, coup de théâtre","interp":"P fait disparaitre la bague qui représente C.","colorClass":"h3","axeId":"mmcb931vzdfb","extraits":["Regarde tout cela s'effacer. (Il jette sa bague dans l'eau)"]},{"id":"mmcd2gfuxafb","proc":"Hypotypose","interp":"P décrit la scène de manière réaliste et animée.","colorClass":"h4","axeId":"mmcb931vzdfb","extraits":["Regarde comme notre image a disparu ; la voilà qui revient peu à peu ; l'eau qui s'était troublée reprend son équilibre ; elle tremble encore ; de grands cercles noirs courent à sa surface ; patience, nous reparaissons ; déjà je distingue de nouveau tes bras enlacés dans les miens ; encore une minute, et il n'y aura plus une ride sur ton joli visage ; regarde !"]},{"id":"mmcd5bene8tr","proc":"Adverbes de durée, ponctuation","interp":"La scène prend du temps","colorClass":"h1","axeId":"mmcb931vzdfb","extraits":["peu à peu ;","encore ;","; patience","; encore une minute"]},{"id":"mmcdd1rpy9zy","proc":"+ que parfait","interp":"Plus de lien avec le présent, le trouble peut aussi s’appliquer à R.","colorClass":"h2","axeId":"mmcb931vzdfb","extraits":["l'eau qui s'était troublée"]},{"id":"mmcdfv5bkoql","proc":"futur + topoi","interp":"Certitude + éloge de R","colorClass":"h3","axeId":"mmcb931vzdfb","extraits":["il n'y aura plus une ride sur ton joli visage"]},{"id":"mmcfp2kdgk6a","proc":"présentatif + imparfait","interp":"Les moments d'amours avec C c'est du passé.","colorClass":"h4","axeId":"mmcb931vzdfb","extraits":["c'était une bague que m'avait donnée Camille."]},{"id":"mmcg2nd0dl0c","proc":"déterminant possésif + ! + CCL","interp":"L'égo de C est touché, la bague est dans l'eau et c'est définitif","colorClass":"h1","axeId":"mmcb931vzdfb","extraits":["CAMILLE, à part. Il a jeté ma bague dans l'eau !"]},{"id":"mmcg976v7bjd","proc":"Q rhétorique + apostrophe, épanadiplose","interp":"Se place comme celui qui sait donc en supériorité, il va annoncer à R et C la définition de l’amour. Il maitrise son discours.","colorClass":"h2","axeId":"mmcb931vtimp","extraits":["Sais-tu ce que c'est que l'amour, Rosette ?","Rosette ! sais-tu ce que c'est que l'amour ?"]},{"id":"mmcgccrr6fg7","proc":"Impératif + double discours","interp":"Attire l'attention de C et de R + du spectateur","colorClass":"h3","axeId":"mmcb931vtimp","extraits":["Écoute !"]},{"id":"mmcgpedd9fmc","proc":"Nature personnifiée, cadre lyrique","interp":"Associe l’amour et la nature, Rosette= petite rosée, feuilles séchées = C et\nsoleil=amour, renaissance de la nature/vie","colorClass":"h4","axeId":"mmcb931vtimp","extraits":["Le vent se tait ; la pluie du matin roule en perles sur les feuilles séchées que le soleil ranime."]},{"id":"mmcgtmsll5ug","proc":"Serment","interp":"P jure son faux amour sur du sacré --> parjure","colorClass":"h1","axeId":"mmcb931vtimp","extraits":["Par la lumière du ciel, par le soleil que voilà, je t'aime !"]},{"id":"mmcgvvxynl1t","proc":"3Q rhétoriques : tournure assertive, métaphore","interp":"P désigne R comme l'anti C. Les nonnes désignées par le \"on\" n'ont pas manipulée R --> allusion à l'acte II scène 5 où P insinue la même chose. Le sang vermeil : rouge vif, vie, passions. Sans affadi = l'inverse de vermeil.","colorClass":"h2","axeId":"mmcb931vtimp","extraits":["Tu veux bien de moi, n'est-ce pas ? On n'a pas flétri ta jeunesse ? on n'a pas infiltré dans ton sang vermeil les restes d'un sang affadi ?"]},{"id":"mmche061skm5","proc":"négation, présentatif + didascalie interne","interp":"C est directement visée ici. P met à distance la vocation de religieuse. Il promeut un amour naturel jeune, beau et simple.","colorClass":"h3","axeId":"mmcb931vtimp","extraits":["Tu ne veux pas te faire religieuse ; te voilà jeune et belle dans les bras d'un jeune homme"]},{"id":"mmchlk729sbq","proc":"ô lyrique, 2xR + !","interp":"Attaque indirecte sur C qui pourrait être à la place de R + fin de l'épanadiplose","colorClass":"h4","axeId":"mmcb931vtimp","extraits":["ô Rosette, Rosette ! sais-tu ce que c'est que l'amour ?"]}]},{"id":"mmdel9vtvnv7","title":"Les fausses confidences Acte II Scène 13","author":"Marivaux","text":"ARAMINTE, d'un air délibéré. — Il n'y en aura aucune, ne vous embarrassez pas, et écrivez le billet que je vais vous dicter ; il y a tout ce qu'il faut sur cette table. \n\nDORANTE. — Eh ! pour qui, Madame ? \n\nARAMINTE. — Pour le Comte, qui est sorti d'ici extrêmement inquiet, et que je vais surprendre bien agréablement, par le petit mot que vous allez lui écrire en mon nom. (Dorante reste rêveur, et par distraction ne va point à la table.) Eh bien, vous n'allez pas à la table ? à quoi rêvez-vous ? \n\nDORANTE, toujours distrait. — Oui, Madame. \n\nARAMINTE, à part, pendant qu'il se place. — Il ne sait ce qu'il fait. Voyons si cela continuera.\n \nDORANTE à part, cherchant du papier. — Ah ! Dubois m'a trompé ! \n\nARAMINTE poursuit. — Êtes-vous prêt à écrire ? \n\nDORANTE. — Madame, je ne trouve point de papier. \n\nARAMINTE allant elle-même. — Vous n'en trouvez point ! En voilà devant vous. \n\nDORANTE. — Il est vrai. \n\nARAMINTE. — Écrivez. « Hâtez-vous de venir, Monsieur ; votre mariage est sûr... » Avez-vous écrit ? ... \n\nDORANTE. — Comment, Madame ? \n\nARAMINTE. — Vous ne m'écoutez donc pas ? « Votre mariage est sûr ; Madame veut que je vous l'écrive, et vous attend pour vous le dire.» (A part.) Il souffre, mais il ne dit mot. Est-ce qu'il ne parlera pas ? «N'attribuez point cette résolution à la crainte que Madame pourrait avoir des suites d'un procès douteux.» \n\nDORANTE. — Je vous ai assuré que vous le gagneriez, Madame. Douteux ! il ne l'est point. \n\nARAMINTE. — N'importe, achevez. « Non, Monsieur, je suis chargé de sa part de vous assurer que la seule justice qu'elle rend à votre mérite la détermine. » \n\nDORANTE, à part.— Ciel ! je suis perdu. (Haut.) Mais, Madame, vous n'aviez aucune inclination pour lui.\n\nARAMINTE. — Achevez, vous dis-je... « Qu'elle rend à votre mérite la détermine...» Je crois que la main vous tremble ! Vous paraissez changé. Qu'est-ce que cela signifie ? Vous trouvez-vous mal ? \n\nDORANTE. — Je ne me trouve pas bien, Madame. \n\nARAMINTE. — Quoi ! Si subitement ! Cela est singulier. Pliez la lettre, et mettez : « À Monsieur le comte de Dorimont. » Vous direz à Dubois qu'il la lui porte. (A part.) Le cœur me bat ! (A Dorante) Voilà qui est écrit tout de travers ! Cette adresse-là n'est presque pas lisible. (A part.) Il n'y a pas encore là de quoi le convaincre.","accroche":"La comédie a pour ambition de corriger les mœurs par le rire.  Les Fausses Confidences de Marivaux, est représentée pour la première fois en 1737 par la troupe des comédiens italiens, remet en cause dans un vaste éclat de rire des pratiques sociales comme le mariage de raison ou le modèle d’un système reposant sur les privilèges au détriment du mérite. Elle s’inscrit en cela pleinement dans le courant des Lumières qui, au XVIIIème siècle, dénonce les abus et élève l’humanité vers un monde plus juste et éclairé. A sait que D est amoureux d'elle, elle cherche à obtenir de lui des aveux. C'est pourquoi elle le met à l’épreuve en lui faisant croire qu'elle veut épousez le compte Dorimont. C'est sur ce coup de théâtre que s'ouvre cet extrait.","problematique":"Dans quelles mesures le stratagème de la lettre est utilisé par A pour manipuler D et le pousser à avouer ses sentiments ?","conclusion":"Ainsi, dans cette scène de stratagème amoureux A est montrée particulièrement cruelle, voyant le\ntrouble de D et le poussant à l’aveu de plus en plus sans qu’il ne réagisse alors que le discours de cette dernière est particulièrement ambigu et qu’il lui est en réalité destiné. La distraction de D crée un décalage comique et provoque la compassion, la pitié et le rire du spectateur. Constatant son échec, A décide ne plus laisser place au doute sur le destinataire, mais ne baisse pas les bras pour autant annonçant qu’elle persévérera. Ce stratagème de la lettre n’est pas sans rappeler la scène 2 de l’acte III de On ne badine pas avec l’amour d’Alfred De Musset où P découvre une lettre de C destinée à son amie. Elle y dit qu’elle avait prémédité de briser le cœur de P et qu’elle avait accompli son plan. Il décide donc de se venger de C voulant provoquer sa jalousie et lui prouvant qu’elle n’avait pas réussi sa mission.","axes":[{"id":"mmdel9vtq7ap","title":"la mise en place du stratagème de fausse confidence d’Araminte"},{"id":"mmdel9vt9wc2","title":"L'écriture de la lettre"}],"citations":[{"id":"mmdfjjyaxnjl","proc":"Didascalie","interp":"A est une actrice, elle prend un air sûr pour crédibiliser son stratagème","colorClass":"h1","axeId":"mmdel9vtq7ap","extraits":["ARAMINTE, d'un air délibéré."]},{"id":"mmdfmevencox","proc":"Futur + impératifs + futur proche","interp":"A a le pouvoir et est sûre d'elle, elle dit à D quoi penser et quoi faire. Le futur simple rend la menace imminente.","colorClass":"h2","axeId":"mmdel9vtq7ap","extraits":["Il n'y en aura aucune, ne vous embarrassez pas, et écrivez le billet que je vais vous dicter ;"]},{"id":"mmdfojhelkdq","proc":"Interjection + !, Q","interp":"D est surpris, on voit son trouble car il pose une question dont il a déjà la réponse. D qui est normalement brillant perd ses moyens --> le stratagème fonctionne.","colorClass":"h3","axeId":"mmdel9vtq7ap","extraits":["Eh ! pour qui, Madame ?"]},{"id":"mmdfp5fy0zo3","proc":"intensifs + antithèse + coup de théâtre","interp":"A va surprendre le baron positivement au gré de D.","colorClass":"h4","axeId":"mmdel9vtq7ap","extraits":["extrêmement inquiet","surprendre bien agréablement"]},{"id":"mmdfzs2ejish","proc":"CCM + futur proche","interp":"D va participer à son propre malheur","colorClass":"h1","axeId":"mmdel9vtq7ap","extraits":["par le petit mot que vous allez lui écrire en mon nom."]},{"id":"mmdg1hvaowh9","proc":"Didascalie","interp":"D est pétrifié par le trouble.","colorClass":"h2","axeId":"mmdel9vtq7ap","extraits":["(Dorante reste rêveur, et par distraction ne va point à la table.)"]},{"id":"mmdg4dpy3dhr","proc":"Interjection + 2Q","interp":"A montre son impatience, elle pousse avec son interrogation partielle D à se révéler.","colorClass":"h3","axeId":"mmdel9vtq7ap","extraits":["Eh bien, vous n'allez pas à la table ? à quoi rêvez-vous ?"]},{"id":"mmdg62lf6bja","proc":"didascalie, comique de mot","interp":"D est encore à coté de la plaque et rompt la règle de pertinence.","colorClass":"h4","axeId":"mmdel9vtq7ap","extraits":["DORANTE, toujours distrait. — Oui, Madame."]},{"id":"mmdg6foeukbe","proc":"Parallélisme, apartés","interp":"A comprend et gère la situation, D croit au stratagème et est déçu.","colorClass":"h1","axeId":"mmdel9vtq7ap","extraits":["ARAMINTE, à part, pendant qu'il se place. — Il ne sait ce qu'il fait. Voyons si cela continuera.","DORANTE à part, cherchant du papier. — Ah ! Dubois m'a trompé !"]},{"id":"mmdgbw91sw5d","proc":"Q + Stichomythies","interp":"A presse physiquement et mentalement D","colorClass":"h2","axeId":"mmdel9vtq7ap","extraits":["Êtes-vous prêt à écrire ?"]},{"id":"mmdgfu9z6fmd","proc":"négation totale","interp":"D répond sur un empêchement matériel pour gagner du temps","colorClass":"h3","axeId":"mmdel9vtq7ap","extraits":["Madame, je ne trouve point de papier."]},{"id":"mmdgn16cndwt","proc":"négation + présentatif","interp":"On ressent l'agacement d'A. D ne peux plus faire autrement","colorClass":"h4","axeId":"mmdel9vtq7ap","extraits":["ARAMINTE allant elle-même. — Vous n'en trouvez point ! En voilà devant vous.","DORANTE. — Il est vrai."]},{"id":"mmdgofc9173p","proc":"Impératif, duplicité","interp":"A matérialise la menace et la toujours + imminente. Le terme \"Monsieur\" peut cependant désigner le Comte et D.","colorClass":"h1","axeId":"mmdel9vt9wc2","extraits":["Écrivez. « Hâtez-vous de venir, Monsieur ; votre mariage est sûr... »"]},{"id":"mmdgwqorp22o","proc":"Q + aposiopèse","interp":"Laisse le temps à D de réfléchir et de faire sa déclaration","colorClass":"h2","axeId":"mmdel9vt9wc2","extraits":["Avez-vous écrit ? ..."]},{"id":"mmdgxp87ctzc","proc":"Comique de mot/répétition","interp":"D rompt à nouveau la règle de pertinence --> trouble","colorClass":"h3","axeId":"mmdel9vt9wc2","extraits":["DORANTE. — Comment, Madame ?"]},{"id":"mmdh2fe1tbu9","proc":"Q (reproche), répétition","interp":"A reproche à la fois à D de ne pas l'écouter mais aussi de ne pas comprendre son réel message. Elle lui répète même que son mariage est sûr.","colorClass":"h4","axeId":"mmdel9vt9wc2","extraits":["Vous ne m'écoutez donc pas ? « Votre mariage est sûr ;"]},{"id":"mmdh5iq7sy23","proc":"Prise de parole","interp":"volonté implacable+ sous entend qu’elle avouera son amour juste après lui si il le fait, idée d’urgence","colorClass":"h1","axeId":"mmdel9vt9wc2","extraits":["Madame veut que je vous l'écrive, et vous attend pour vous le dire.»"]},{"id":"mmdh981zgv74","proc":"aparté + mais + négation","interp":"A éprouve de la pitié, la douleur de D est visible mais il ne dit rien. A commence à avoir des doutes si son stratagème va fonctionner.","colorClass":"h2","axeId":"mmdel9vt9wc2","extraits":["(A part.) Il souffre, mais il ne dit mot. Est-ce qu'il ne parlera pas ?"]},{"id":"mmdhb1tiqc1d","proc":"litote","interp":"Ce n'est pas un mariage de raison que veut faire A mais un mariage d'amour","colorClass":"h3","axeId":"mmdel9vt9wc2","extraits":["N'attribuez point cette résolution à la crainte que Madame pourrait avoir des suites d'un procès douteux."]},{"id":"mmdhfo5v6waf","proc":"Certitude + indigantion + réaction","interp":"D se révolte enfin, il sort de sa torpeur mais pas pour la bonne raison.","colorClass":"h4","axeId":"mmdel9vt9wc2","extraits":["Je vous ai assuré que vous le gagneriez, Madame. Douteux ! il ne l'est point."]},{"id":"mmdhghr8vh66","proc":"Impératif + aposiopèse","interp":"Rappelle que ce n'est pas le sujet + pousse à avouer","colorClass":"h1","axeId":"mmdel9vt9wc2","extraits":["N'importe, achevez."]},{"id":"mmdhygtvoc4f","proc":"Ambiguité + paradoxe","interp":"A associe un membre de la noblesse au mérite, ce qui est incompatible --> s’adresse plutôt à D : qualités morale et physique sans privilèges","colorClass":"h2","axeId":"mmdel9vt9wc2","extraits":["que la seule justice qu'elle rend à votre mérite la détermine."]},{"id":"mmdi6trcnjek","proc":"aparté : juron + !","interp":"Détresse, il n'a toujours rien compris, ses émotions ressortent. Comique de mot et de situation, pathétique","colorClass":"h3","axeId":"mmdel9vt9wc2","extraits":["à part.— Ciel ! je suis perdu."]},{"id":"mmdi9mjjf7tw","proc":"Mais adversatif","interp":"D dans son désespoir, tente de remettre en question le choix de A","colorClass":"h4","axeId":"mmdel9vt9wc2","extraits":["Mais, Madame, vous n'aviez aucune inclination pour lui"]},{"id":"mmdibodgztt9","proc":"Impératif + aposiopèse","interp":"A insiste et continue à chercher les aveux","colorClass":"h1","axeId":"mmdel9vt9wc2","extraits":["Achevez, vous dis-je..."]},{"id":"mmdifz2iv94t","proc":"Énumération, gradation de Q","interp":"Trouble, feint la surprise de voir D dans cet état --> pousser à avouer d'une autre manière","colorClass":"h2","axeId":"mmdel9vt9wc2","extraits":["Je crois que la main vous tremble ! Vous paraissez changé. Qu'est-ce que cela signifie ? Vous trouvez-vous mal ?"]},{"id":"mmdilgay8alz","proc":"Litote","interp":"D a du mal à avouer son trouble","colorClass":"h3","axeId":"mmdel9vt9wc2","extraits":["Je ne me trouve pas bien, Madame."]},{"id":"mmditq2u6h8w","proc":"Si intensif +2!","interp":"Feint à nouveau la surprise et attend une dernière fois une réponse.","colorClass":"h4","axeId":"mmdel9vt9wc2","extraits":["Quoi ! Si subitement ! Cela est singulier."]},{"id":"mmdivvb8yu9x","proc":"Destinataire de la lettre","interp":"Abandon de l’ambiguïté.","colorClass":"h1","axeId":"mmdel9vt9wc2","extraits":["À Monsieur le comte de Dorimont."]},{"id":"mmdiwc5mukv1","proc":"Aparté + !","interp":"Insiste sur les sentiments de A, compassion car\nelle a vécu un moment compliqué/intense","colorClass":"h2","axeId":"mmdel9vt9wc2","extraits":["(A part.) Le cœur me bat !"]},{"id":"mmdj2kkckm9j","proc":"négation partielle","interp":"On peut encore hésiter sur le destinataire","colorClass":"h3","axeId":"mmdel9vt9wc2","extraits":["Cette adresse-là n'est presque pas lisible."]},{"id":"mmdj5g2r9lad","proc":"Aparté : Dernière phrase","interp":"Constat de l’échec, A attachée à D, va continuer d’essayer, note d’espoir","colorClass":"h4","axeId":"mmdel9vt9wc2","extraits":["(A part.) Il n'y a pas encore là de quoi le convaincre."]}]},{"id":"mmesnw43kuoc","title":"Manon Lescaut - La rencontre","author":"L'abbé Prévost","text":"J'avais marqué le temps de mon départ d'Amiens. Hélas ! que ne le marquais-je un\njour plus tôt ! j'aurais porté chez mon père toute mon innocence. La veille même de celui\nque je devais quitter cette ville, étant à me promener avec mon ami, qui s'appelait Tiberge,\nnous vîmes arriver le coche d'Arras, et nous le suivîmes jusqu'à l'hôtellerie où ces voitures\ndescendent. Nous n'avions pas d'autre motif que la curiosité. Il en sortit quelques femmes\nqui se retirèrent aussitôt. Mais il en resta une, fort jeune, qui s'arrêta seule dans la cour,\npendant qu'un homme d'un âge avancé, qui paraissait lui servir de conducteur, s'empressait\npour faire tirer son équipage des paniers. Elle me parut si charmante que moi, qui n'avais\njamais pensé à la différence des sexes, ni regardé une fille avec un peu d'attention, moi, dis-\nje, dont tout le monde admirait la sagesse et la retenue, je me trouvai enflammé tout d'un\ncoup jusqu'au transport. J'avais le défaut d'être excessivement timide et facile à déconcerter\n; mais loin d'être arrêté alors par cette faiblesse, je m'avançai vers la maîtresse de mon\ncœur. Quoiqu'elle fût encore moins âgée que moi, elle reçut mes politesses sans paraître\nembarrassée. Je lui demandai ce qui l'amenait à Amiens et si elle y avait quelques personnes\nde connaissance. Elle me répondit ingénument, qu'elle y était envoyée par ses parents, pour\nêtre religieuse. L'amour me rendait déjà si éclairé, depuis un moment qu'il était dans mon\ncœur, que je regardai ce dessein comme un coup mortel pour mes désirs. Je lui parlai d'une\nmanière qui lui fit comprendre mes sentiments, car elle était bien plus expérimentée que\nmoi : c'était malgré elle qu'on l'envoyait au couvent, pour arrêter sans doute son penchant\nau plaisir, qui s'était déjà déclaré, et qui a causé dans la suite tous ses malheurs et les miens.","accroche":"L'Histoire du Chevalier des Grieux et de Manon Lescaut est un roman de mœurs à la tonalité autobiographique s'inscrivant dans les réalités sociales et économiques du XVIIIème siècle. Il paraît comme septième tome des Mémoires et aventures d'un homme de qualité qui s'est retiré du monde. Le narrateur, le marquis de Renoncour ; homme respectable, précise dans son avis qui sert de prologue au roman qu'il veut peindre, avec le chevalier, un caractère ambigu, un mélange de vertus et de vices, un contraste perpétuel de bons sentiments et d'actions mauvaises. DesG vient de rentrer de Louisiane où il a enterré M de ses propres mains. Il fait le récit de ses aventures au marquis à postériori. Cet extrait traite de la rencontre entre M en desG.","problematique":"En quoi cette scène de rencontre amoureuse placée sous le sceau du destin met-elle en place les principaux motifs de l’œuvre ?","conclusion":"Ainsi, les thèmes principaux du roman sont déjà en place : la noblesse de Des Grieux fait de lui un héros tragique, victime de l’Amour, donnant à ses fautes un éclat presque tragique. La scène reprend les topoï du coup de foudre, qui constitue l’événement déclencheur du récit. Mais ce sentiment est-il réciproque ? Manon demeure mystérieuse. On découvre aussi deux personnages ambigus : Des Grieux, narrateur et metteur en scène de son histoire, tend à justifier ses choix, tandis que Manon joue l’ingénue, peut-être elle aussi emportée par la passion. Cette rencontre est marquée par la fatalité et évoque une réécriture du péché originel. Si le narrateur âgé reconnaît les égarements de sa jeunesse, il les regarde avec bienveillance, tandis que l’abbé Prévost adopte une posture morale tout en laissant au lecteur le soin de juger avec vigilance et indulgence. Ce texte ouvre ainsi, en cette première moitié du 18ème siècle un sentimentalisme où la compassion l’emporte sur la condamnation de la passion que plusieurs romans comme L’Education sentimentale reprendront.","axes":[{"id":"mmesnw43bvef","title":"La mise en scène de la rencontre"},{"id":"mmesnw43lqx3","title":"Un apparition bouleversante : le coup de foudre de des Grieux"},{"id":"mmesnw43mf3v","title":"Une conversation annonciatrice des personnages et de l’intrigue."}],"citations":[]},{"id":"mmexqzoc35o1","title":"Manon Lescaut - La scène du parloir","author":"L'abbé Prévost","text":"Il était six heures du soir. On vint m’avertir, un moment après mon retour, qu’une\ndame demandait à me voir. J’allai au parloir sur-le-champ. Dieux ! quelle apparition\nsurprenante ! j’y trouvai Manon. C’était elle, mais plus aimable et plus brillante que je ne\nl’avais jamais vue. Elle était dans sa dix-huitième année. Ses charmes surpassaient tout ce\nqu’on peut décrire : c’était un air si fin, si doux, si engageant ! l’air de l’Amour même. Toute\nsa figure me parut un enchantement.\nJe demeurai interdit à sa vue ; et, ne pouvant conjecturer quel était le dessein de\ncette visite, j’attendais, les yeux baissés et avec tremblement, qu’elle s’expliquât. Son\nembarras fut pendant quelque temps égal au mien ; mais, voyant que mon silence\ncontinuait, elle mit la main devant ses yeux pour cacher quelques larmes. Elle me dit d’un\nton timide qu’elle confessait que son infidélité méritait ma haine ; mais que, s’il était vrai\nque j’eusse jamais eu quelque tendresse pour elle, il y avait aussi bien de la dureté à laisser\npasser deux ans sans prendre soin de m’informer de son sort, et qu’il y en avait beaucoup\nencore à la voir dans l’état où elle était en ma présence, sans lui dire une parole. Le désordre\nde mon âme en l’écoutant ne saurait être exprimé.\nElle s’assit. Je demeurai debout, le corps à demi tourné, n’osant l’envisager\ndirectement. Je commençai plusieurs fois une réponse que je n’eus pas la force d’achever.\nEnfin je fis un effort pour m’écrier douloureusement : « Perfide Manon ! Ah ! perfide !\nperfide!» Elle me répéta, en pleurant à chaudes larmes, qu’elle ne prétendait point justifier\nsa perfidie. « Que prétendez-vous donc ? m’écriai-je encore. — Je prétends mourir,\nrépondit-elle, si vous ne me rendez votre cœur, sans lequel il est impossible que je vive. —\nDemande donc ma vie, infidèle, repris-je en versant moi-même des pleurs que je m’efforçai\nen vain de retenir ; demande ma vie, qui est l’unique chose qui me reste à te sacrifier ; car\nmon cœur n’a jamais cessé d’être à toi. »","accroche":"L'Histoire du Chevalier des Grieux et de Manon Lescaut est un roman de mœurs à la tonalité autobiographique s'inscrivant dans les réalités sociales et économiques du XVIIIème siècle. Il paraît comme septième tome des Mémoires et aventures d'un homme de qualité qui s'est retiré du monde. Le narrateur, le marquis de Renoncour ; homme respectable, précise dans son avis qui sert de prologue au roman qu'il veut peindre, avec le chevalier, un caractère ambigu, un mélange de vertus et de vices, un contraste perpétuel de bons sentiments et d'actions mauvaises. Dès le début de l’œuvre, après un an à s’être enfuis pour vivre leur amour à Paris, M trahit son amant. Le père du chevalier le fait enlever et enfermer. Au bout d’à nouveau un an, DG commence des études de théologie au séminaire de Saint-Sulpice et est animé de pieux sentiments. Après un exercice rhétorique réussi, il reçoit la visite de M.","problematique":"En quoi la mise en scène des retrouvailles de Manon et DG souligne-t-elle un combat tragique entre sentiments et raison ?","conclusion":"Ainsi, cette scène de retrouvailles, très théâtralisée, est virtuose car elle fait coexister plusieurs stratégies discursives : M déploie son ingéniosité pour faire oublier ses fautes tandis que DG cherche sans cesse à se justifier. L’auteur, lui, organise la scène et invite le lecteur à deviner les intentions des personnages sans qu’elles soient explicitement formulées. DG apparaît en position de faiblesse, physique et morale, et résiste difficilement à la stratégie séductrice de Manon. Celle-ci devient actrice de la scène et fait preuve d’audace pour reconquérir son chevalier en venant le chercher dans un lieu clos et religieux. Toutefois, le récit reste très subjectif : la scène nous est rapportée par DG, qui oriente notre perception et cherche avant tout à se disculper en présentant M comme celle qui l’entraîne vers la faute. Lors de leur 1ère rencontre DG a enlevé M du couvent où elle était destinée, on peut donc faire un parallèle avec cette scène où M enlève DG au séminaire de Saint-Sulpice où il faisait de brillantes études.","axes":[{"id":"mmexqzocpg4u","title":"Un coup de foudre supérieur au premier"},{"id":"mmexqzocyiq4","title":"Le choc des retrouvailles"},{"id":"mmexqzocf7bt","title":"Une dispute qui voit le triomphe de la passion"}],"citations":[{"id":"mmeyw2avguqc","proc":"CCT","interp":"Cadre temporel : crépuscule = mystère","colorClass":"h1","axeId":"mmexqzocpg4u","extraits":["Il était six heures du soir."]},{"id":"mmez17k15kt8","proc":"PP indéfinit + passé simple, COI","interp":"Il se passe quelque chose d'important. Le terme \"dame\" à déjà une connotation noble. DG est en COI, il se dédouane déjà de ce qu'il va se passer.","colorClass":"h2","axeId":"mmexqzocpg4u","extraits":["On vint m’avertir, un moment après mon retour, qu’une\ndame demandait à me voir."]},{"id":"mmeztci567a7","proc":"Passé simple + locution temporelle","interp":"On voit l'empressement et la curiosité de DG","colorClass":"h3","axeId":"mmexqzocpg4u","extraits":["J’allai au parloir sur-le-champ"]},{"id":"mmf0bem9s6kp","proc":"2 phrases ! nominales, interjection désémentisé","interp":"DG commence à subir un nouveau coup de foudre : importance de la vision.","colorClass":"h4","axeId":"mmexqzocpg4u","extraits":["Dieux !","quelle apparition\nsurprenante !"]},{"id":"mmf0bu5bl9hy","proc":"Prénom sans nom","interp":"Proximité + évolution","colorClass":"h1","axeId":"mmexqzocpg4u","extraits":["j’y trouvai Manon","Elle était dans sa dix-huitième année"]},{"id":"mmf0fw0xphfx","proc":"Superlatifs + énum + globalisant + hyperbole + intensifs","interp":"M présentée comme une Allégorie hyperbolique au même titre qu’Aphrodite.","colorClass":"h2","axeId":"mmexqzocpg4u","extraits":["mais plus aimable et plus brillante que je ne\nl’avais jamais vue.","Ses charmes surpassaient tout ce\nqu’on peut décrire","si fin, si doux, si engageant !"]},{"id":"mmf26pxd7nne","proc":"Champ lexical de l'envoûtement","interp":"M comme plaisante à voir mais aussi comme sorcière/envoûteuse","colorClass":"h3","axeId":"mmexqzocpg4u","extraits":["charmes","enchantement"]},{"id":"mmf5qqtwlc2g","proc":"verbe, adjectif","interp":"DG est en état de choc, il est immobile","colorClass":"h4","axeId":"mmexqzocyiq4","extraits":["Je demeurai interdit à sa vue"]},{"id":"mmf5u51dacze","proc":"négation totale","interp":"DG ne comprend pas pourquoi elle est venue","colorClass":"h1","axeId":"mmexqzocyiq4","extraits":["ne pouvant conjecturer"]},{"id":"mmf5z0pbghh9","proc":"CCM","interp":"DG se soumet à la divinité. Les tremblements montrent son trouble et son embarras.","colorClass":"h2","axeId":"mmexqzocyiq4","extraits":["j’attendais, les yeux baissés et avec tremblement,"]},{"id":"mmf62jm7bf2y","proc":"CCT, adjectif","interp":"Le trouble est partagé par M et il dure.","colorClass":"h3","axeId":"mmexqzocyiq4","extraits":["Son\nembarras fut pendant quelque temps égal au mien"]},{"id":"mmf6uiu031hw","proc":"conj de coordiation + pathétique","interp":"voyant que DG ne fait rien, M se met à pleurer soit par honte soit pour préparer DG a ses aveux : empathie manipulatrice.","colorClass":"h4","axeId":"mmexqzocyiq4","extraits":["mais, voyant que mon silence\ncontinuait, elle mit la main devant ses yeux pour cacher quelques larmes."]},{"id":"mmf76ibe7d2m","proc":"CCM, déterminants","interp":"Le ton timide est encore là pour attiser l'empathie. La confession rappelle le parloir où ils sont actuellement. Elle dit comprendre la haine de DG.","colorClass":"h1","axeId":"mmexqzocyiq4","extraits":["d’un\nton timide","confessait que son infidélité méritait ma haine"]},{"id":"mmf79uouo9fo","proc":"Mais adversatif + CCT","interp":"M renverse la culpabilité en disant que c'est DG qui lui a fait du mal en la laissant sans nouvelles.","colorClass":"h2","axeId":"mmexqzocyiq4","extraits":["mais que","il y avait aussi bien de la dureté à laisser\npasser deux ans sans prendre soin de m’informer de son sort,"]},{"id":"mmfgolhzzzvh","proc":"litote","interp":"DG n'a même pas les mots pour décrire son état, il est toujours bloqué.","colorClass":"h3","axeId":"mmexqzocyiq4","extraits":["Le désordre\nde mon âme en l’écoutant ne saurait être exprimé."]},{"id":"mmhmpf3ku5i5","proc":"Antithèse, répétition","interp":"M se soumet alors que DG est encore pétrifié","colorClass":"h4","axeId":"mmexqzocf7bt","extraits":["Elle s’assit. Je demeurai debout"]},{"id":"mmhmykg0y9g7","proc":"métaphore, négation","interp":"DG hésite, M est trop belle et DG à aussi peur de retomber dans ses manipulations","colorClass":"h1","axeId":"mmexqzocf7bt","extraits":["le corps à demi tourné, n’osant l’envisager\ndirectement."]},{"id":"mmhnflhag1w2","proc":"réitération","interp":"DG est tellement perdu qu'il bégaie","colorClass":"h2","axeId":"mmexqzocf7bt","extraits":["Je commençai plusieurs fois une réponse"]},{"id":"mmhnhz2oflnb","proc":"paradoxe, hyperbole","interp":"Le verbe \"achever\" est normalement utilisé pour les tâches ou les actions physique, ici c'est pour une phrase.","colorClass":"h3","axeId":"mmexqzocf7bt","extraits":["pas la force d’achever","m’écrier douloureusement"]},{"id":"mmhriq7lkona","proc":"Répétition, interjection, !","interp":"Associe fortement à M le vice de la perfidie","colorClass":"h4","axeId":"mmexqzocf7bt","extraits":["« Perfide Manon ! Ah ! perfide !\nperfide!»"]},{"id":"mmhrth1hhg62","proc":"CCM, négation","interp":"M dit que ce vice est confessé, le CCM attise le pathétique","colorClass":"h1","axeId":"mmexqzocf7bt","extraits":["Elle me répéta, en pleurant à chaudes larmes, qu’elle ne prétendait point justifier\nsa perfidie."]},{"id":"mmhrudg975pr","proc":"Q","interp":"DG cherche à comprendre","colorClass":"h2","axeId":"mmexqzocf7bt","extraits":["Que prétendez-vous donc ?"]},{"id":"mmhs9wpxh48t","proc":"métaphore hyperbolique","interp":"M dit ne pas pouvoir vivre sans l'amour de DG.","colorClass":"h3","axeId":"mmexqzocf7bt","extraits":["Je prétends mourir","si vous ne me rendez votre cœur, sans lequel il est impossible que je vive"]},{"id":"mmhscn1h5p94","proc":"Anaphore : Périphrase, champ lexical du divin","interp":"DG cède et se soumet à M, qui est une déesse. Même si elle est infidèle.","colorClass":"h4","axeId":"mmexqzocf7bt","extraits":["Demande donc ma vie, infidèle,","demande ma vie, qui est l’unique chose qui me reste à te sacrifier"]},{"id":"mmhsit9r5mb9","proc":"Pathétique","interp":"DG est fatalement soumis à M","colorClass":"h1","axeId":"mmexqzocf7bt","extraits":["en versant moi-même des pleurs que je m’efforçai\nen vain de retenir"]},{"id":"mmhsjsyccsj9","proc":"CCC : antithèse","interp":"Et il l'a toujours été.","colorClass":"h2","axeId":"mmexqzocf7bt","extraits":["car\nmon cœur n’a jamais cessé d’être à toi."]}]},{"id":"mmjm5n1zsutq","title":"Manon Lescaut - L'enterrement de Manon","author":"Musset","text":"Mon âme ne suivit pas la sienne. Le Ciel ne me trouva point, sans doute,\nassez rigoureusement puni. Il a voulu que j'aie traîné, depuis, une vie\nlanguissante et misérable. Je renonce volontairement à la mener jamais plus\nheureuse.\nJe demeurai plus de vingt-quatre heures la bouche attachée sur le visage\net sur les mains de ma chère Manon. Mon dessein était d'y mourir ; mais je fis\nréflexion, au commencement du second jour, que son corps serait exposé,\naprès mon trépas, à devenir la pâture des bêtes sauvages. Je formai la\nrésolution de l'enterrer et d'attendre la mort sur sa fosse. J'étais déjà si proche\nde ma fin, par l'affaiblissement que le jeûne et la douleur m'avaient causé, que\nj'eus besoin de quantité d'efforts pour me tenir debout. Je fus obligé de\nrecourir aux liqueurs que j'avais apportées. Elles me rendirent autant de force\nqu'il en fallait pour le triste office que j'allais exécuter. Il ne m'était pas difficile\nd'ouvrir la terre, dans le lieu où je me trouvais. C'était une campagne couverte\nde sable. Je rompis mon épée, pour m'en servir à creuser, mais j'en tirai moins\nde secours que de mes mains. J'ouvris une large fosse. J'y plaçai l'idole de mon\ncœur, après avoir pris soin de l'envelopper de tous mes habits, pour empêcher\nle sable de la toucher. Je ne la mis dans cet état qu'après l'avoir embrassée\nmille fois, avec toute l'ardeur du plus parfait amour. Je m'assis encore près\nd'elle. Je la considérai longtemps. Je ne pouvais me résoudre à fermer la fosse.\nEnfin, mes forces recommençant à s'affaiblir, et craignant d'en manquer tout à\nfait avant la fin de mon entreprise, j'ensevelis pour toujours dans le sein de la\nterre ce qu'elle avait porté de plus parfait et de plus aimable. Je me couchai\nensuite sur la fosse, le visage tourné vers le sable, et fermant les yeux avec le\ndessein de ne les ouvrir jamais, j'invoquai le secours du Ciel et j'attendis la mort\navec impatience.","accroche":"L'Histoire du Chevalier des Grieux et de Manon Lescaut est un roman de mœurs à la tonalité autobiographique s'inscrivant dans les réalités sociales et économiques du XVIIIème siècle. Il paraît comme septième tome des Mémoires et aventures d'un homme de qualité qui s'est retiré du monde. Le narrateur, le marquis de Renoncour ; homme respectable, précise dans son avis qui sert de prologue au roman qu'il veut peindre, avec le chevalier, un caractère ambigu, un mélange de vertus et de vices, un contraste perpétuel de bons sentiments et d'actions mauvaises.","problematique":"En cette scène de deuil constitue-t-elle l’apogée du tragique dans le récit de DG ?","conclusion":"DG incarne le personnage tragique condamné à souffrir pour expier ses péchés. La mort, qui apparaît comme un soulagement, lui est refusée. A ce désir de mort, s'oppose une nécessité supérieure : celle d'enterrer dignement Manon. Cela constitue à la fois un ultime acte d'amour épique et une acceptation de l'évidence cruelle de la séparation définitive des amants. Ce récit devient hommage funèbre bouleversant et inscrit le couple Manon/DG dans la lignée des célèbres amants tragiques. DG narrateur s’inscrit dans la tradition d’Orphée : comme Orphée ayant perdu Eurydice, il ne peut ramener Manon à la vie que par les mots. Son récit devient un hommage funèbre qui préserve leur amour et inscrit le couple dans la lignée des amants tragiques, à l’image d’Orphée et d’Eurydice.","axes":[{"id":"mmjm5n1zx7rv","title":"La lamentation tragique de DG"},{"id":"mmjm5n1zaudh","title":"Le projet d'ensevelissement de Manon"},{"id":"mmjm5n1z9137","title":"La scène de l'enterrement"},{"id":"mmjm5n1zlz15","title":"L’attente de la mort"}],"citations":[{"id":"mmjn9r8wml4k","proc":"Négation totale + séparation syntaxique","interp":"Commence sur un constat : DG n'est pas mort alors que M si.","colorClass":"h1","axeId":"mmjm5n1zx7rv","extraits":["Mon âme ne suivit pas la sienne."]},{"id":"mmjngv5o1eei","proc":"Périphrase + négation totale + modalisateur + DG en COD","interp":"Par la velontée divine, DG doit encore expier ses péchés.","colorClass":"h2","axeId":"mmjm5n1zx7rv","extraits":["Le Ciel ne me trouva point, sans doute,\nassez rigoureusement puni."]},{"id":"mmmefee8ymsj","proc":"métaphore + adj avec 4 syllables","interp":"DG qu'il a eu une vie difficile et lourde. Les adj insistent sur cet idée.","axeId":"mmjm5n1zx7rv","extraits":["j'aie traîné, depuis, une vie\nlanguissante et misérable."],"colorClass":"h3"},{"id":"mmmeh6c8k58x","proc":"Présent de véritée générale + négation totale","interp":"DG est résigné, il accepte son sort, la punition divine","axeId":"mmjm5n1zx7rv","extraits":["Je renonce volontairement à la mener jamais plus\nheureuse."],"colorClass":"h4"},{"id":"mmmeki68fwtv","proc":"verbe + CCT","interp":"DG reste perdu voire ébahi, longtemps, très longtemps","axeId":"mmjm5n1zaudh","extraits":["Je demeurai plus de vingt-quatre heures"],"colorClass":"h1"},{"id":"mmmemnykgs06","proc":"Métaphore hyperbolique + déterminant possessif + hypocoristique","interp":"Il témoigne de son attachement mais dans le respect","axeId":"mmjm5n1zaudh","extraits":["la bouche attachée sur le visage\net sur les mains de ma chère Manon"],"colorClass":"h2"},{"id":"mmmepjm2y2v5","proc":"Répétition","interp":"Insiste sur sa volonté de mourir","axeId":"mmjm5n1zaudh","extraits":["Mon dessein était d'y mourir","après mon trépas","d'attendre la mort sur sa fosse"],"colorClass":"h3"},{"id":"mmmerx807ufa","proc":"Mais adversatif","interp":"Mais il existe une volonté plus forte, celle de protéger M des souillures.","axeId":"mmjm5n1zaudh","extraits":["mais je fis\nréflexion"],"colorClass":"h4"},{"id":"mmmeuwtpc5ja","proc":"\"résolution\", \"sa fosse\": de grande taille","interp":"Il prend donc une décision concrète, qui lui demandera de l'effort malgré l'ampleur de la tâche","axeId":"mmjm5n1zaudh","extraits":["Je formai la\nrésolution de l'enterrer et d'attendre la mort sur sa fosse."],"colorClass":"h1"},{"id":"mmmewoaiebw5","proc":"Intensif + DG en COI","interp":"DG est en état d’extrême faiblesse, à cause de la mort de M, il subit la situation","axeId":"mmjm5n1z9137","extraits":["J'étais déjà si proche\nde ma fin","par l'affaiblissement que le jeûne et la douleur m'avaient causé"],"colorClass":"h2"},{"id":"mmmf0kihohqw","proc":"Intensif \"de quantité\"","interp":"Pathétique : DG à besoin de beaucoup d'énergie pour une action aussi simple que de se lever","axeId":"mmjm5n1z9137","extraits":["j'eus besoin de quantité d'efforts pour me tenir debout"],"colorClass":"h3"},{"id":"mmmf29xd7v8g","proc":"Pluriel","interp":"Il a eu la nécessité d'utiliser des liqueurs pour dépasser ses limites naturelles","axeId":"mmjm5n1z9137","extraits":["Je fus obligé de\nrecourir aux liqueurs"],"colorClass":"h4"},{"id":"mmmf5nnns210","proc":"équivalence, terme \"office\"","interp":"DG a tout juste assez de force pour effectuer une action pathétique. Le terme office revoie au Religieux et donc au fait que M est sacrée.","axeId":"mmjm5n1z9137","extraits":["autant de force\nqu'il en fallait","pour le triste office"],"colorClass":"h1"},{"id":"mmmfbchvnmeh","proc":"litote","interp":"Finalement c'est plus simple que prévu.","axeId":"mmjm5n1z9137","extraits":["Il ne m'était pas difficile\nd'ouvrir la terre"],"colorClass":"h2"},{"id":"mmmfbnih6krx","proc":"description","interp":"1ère description du lieu, avant : obnubilé par M + explication de la facilité. Ils sont isolés dans un lieu stérile et hostile","axeId":"mmjm5n1z9137","extraits":["C'était une campagne couverte\nde sable."],"colorClass":"h3"},{"id":"mmmff8qyft8c","proc":"Symbolique, mais","interp":"DG renonce à sa noblesse pour M. Mais il l'a fait pour rien.","axeId":"mmjm5n1z9137","extraits":["Je rompis mon épée, pour m'en servir à creuser","mais j'en tirai moins\nde secours que de mes mains."],"colorClass":"h4"},{"id":"mmmfhjmyo26g","proc":"périphrase + lysisme","interp":"Après avoir creusé la tombe, il place avec délicatesse M, figure sacrée.","axeId":"mmjm5n1z9137","extraits":["J'ouvris une large fosse. J'y plaçai l'idole de mon\ncœur"],"colorClass":"h1"},{"id":"mmmflf90zemw","proc":"métaphore","interp":"DG protège M avec attention. Il sacrifie tout pour elle, il n'a plus rien : nudité.","axeId":"mmjm5n1z9137","extraits":["pris soin de l'envelopper de tous mes habits"],"colorClass":"h2"},{"id":"mmmfr97fytlh","proc":"Négation restrictive + euphémisme, 2x hyperbole","interp":"Il montre toute sa tendresse pour elle, c'est difficile pour lui de se séparer de M, devenue mythique.","axeId":"mmjm5n1z9137","extraits":["Je ne la mis dans cet état","qu'après l'avoir embrassée\nmille fois, avec toute l'ardeur du plus parfait amour"],"colorClass":"h3"},{"id":"mmmfwgg1x4u6","proc":"Pathétique : adverbe, négation totale soutenue","interp":"DG est en situation de prostration (traumatisme). Il est bloqué.","axeId":"mmjm5n1z9137","extraits":["Je m'assis encore près\nd'elle. Je la considérai longtemps. Je ne pouvais me résoudre à fermer la fosse."],"colorClass":"h4"},{"id":"mmmfwyqb7kyl","proc":"\"toujours\"+plus que parfait, périphrase + hyperbole","interp":"Dernière étape, il enterre M définitivement avec délicatesse en la montrant une dernière fois comme divine.","axeId":"mmjm5n1z9137","extraits":["Enfin,","j'ensevelis pour toujours","ce qu'elle avait porté de plus parfait et de plus aimable"],"colorClass":"h1"},{"id":"mmmg3ra6rfhh","proc":"CCL","interp":"religion : M \"retourne à la poussière\", moralité","axeId":"mmjm5n1z9137","extraits":["dans le sein de la\nterre"],"colorClass":"h2"},{"id":"mmmg66lwsuck","proc":"Gradation","interp":"Gradation des éléments revoyant à la mort","axeId":"mmjm5n1zlz15","extraits":["Je me couchai\nensuite sur la fosse, le visage tourné vers le sable, et fermant les yeux avec le\ndessein de ne les ouvrir jamais, j'invoquai le secours du Ciel et j'attendis la mort\navec impatience."],"colorClass":"h3"},{"id":"mmmg794jw2jn","proc":"Métaphore","interp":"DG est encore tourné vers la mort mais aussi vers M.","axeId":"mmjm5n1zlz15","extraits":["le visage tourné vers le sable"],"colorClass":"h4"},{"id":"mmmg8yefbajb","proc":"euphémisme + négation totale","interp":"DG veut commettre le péché de désespoir = suicide.","axeId":"mmjm5n1zlz15","extraits":["fermant les yeux avec le\ndessein de ne les ouvrir jamais"],"colorClass":"h1"},{"id":"mmmgbwbizvlu","proc":"Périphrase","interp":"Il entre dans une dimension blasphématoire en priant Dieu pour ce péché.","axeId":"mmjm5n1z9137","extraits":["j'invoquai le secours du Ciel"],"colorClass":"h2"},{"id":"mmmgcahwisbd","proc":"CCM","interp":"DG montre sa hâte, sa situation n'a toujours pas avancé depuis le début de l'extrait","axeId":"mmjm5n1zlz15","extraits":["j'attendis la mort\navec impatience."],"colorClass":"h3"}]}],"curId":"mm67rf2gipoo"};</script>
+<script>
+'use strict';
+
+// ─── CONSTANTS ─────────────────────────────────────────
+const COLORS    = ['h1','h2','h3','h4'];
+const COLOR_HEX = {h1:'#b8900a',h2:'#257a25',h3:'#1f50a0',h4:'#a02060'};
+const ROMANS    = ['I','II','III','IV','V','VI','VII','VIII','IX','X'];
+
+// ─── STATE ─────────────────────────────────────────────
+let DB          = {texts:[], curId:null};
+let _eTxtId     = null; // id being edited in m-text
+let _eAxeId     = null; // id being edited in m-axe
+let _eCitId     = null; // id being edited in m-cit
+let activeId    = null; // currently highlighted citation
+let nodeMap     = [];   // parsed text nodes
+
+// ─── SAFE HELPERS ──────────────────────────────────────
+function curText() {
+  try { return DB.texts.find(t => t.id === DB.curId) || null; } catch(e) { return null; }
+}
+function uid() {
+  return Date.now().toString(36) + Math.random().toString(36).slice(2,6);
+}
+function esc(s) {
+  return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function escH(s) {
+  return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+function roman(n) { return ROMANS[n-1] || String(n); }
+function $id(id) { return document.getElementById(id); }
+function val(id) { return ($id(id) ? $id(id).value : '').trim(); }
+
+// ─── NORMALIZE ─────────────────────────────────────────
+function norm(t) {
+  if (!t || typeof t !== 'object') return null;
+  t.id            = String(t.id            || uid());
+  t.title         = String(t.title         || '');
+  t.author        = String(t.author        || '');
+  t.text          = String(t.text          || '');
+  t.accroche      = String(t.accroche      || '');
+  t.problematique = String(t.problematique || '');
+  t.conclusion    = String(t.conclusion    || '');
+  // axes: merge old "mouvements" field if needed
+  if (!Array.isArray(t.axes)) {
+    t.axes = Array.isArray(t.mouvements) ? t.mouvements : [];
+  }
+  t.axes = t.axes.map(a => ({
+    id:    String(a.id    || uid()),
+    title: String(a.title || '')
+  }));
+  if (!Array.isArray(t.citations)) t.citations = [];
+  t.citations = t.citations.map((c,i) => {
+    const axeId = String(c.axeId || c.mouvementId || '');
+    let extraits = Array.isArray(c.extraits) ? c.extraits.filter(Boolean) : [];
+    if (!extraits.length && c.cit) extraits = [String(c.cit)];
+    return {
+      id:         String(c.id         || uid()),
+      proc:       String(c.proc       || ''),
+      interp:     String(c.interp     || ''),
+      colorClass: COLORS.includes(c.colorClass) ? c.colorClass : COLORS[i % COLORS.length],
+      axeId,
+      extraits
+    };
+  });
+  return t;
+}
+
+// ─── MODALS ────────────────────────────────────────────
+function openModal(id, data) {
+  try {
+    if (id==='m-text') prepText(data);
+    if (id==='m-axe')  prepAxe(data);
+    if (id==='m-cit')  prepCit(data);
+    $id(id).classList.add('open');
+  } catch(e) { console.error('openModal',e); }
+}
+function closeModal(id) {
+  try { $id(id).classList.remove('open'); } catch(e) {}
+}
+document.querySelectorAll('.modal-bg').forEach(bg => {
+  bg.addEventListener('click', e => { if (e.target===bg) bg.classList.remove('open'); });
+});
+
+// ── Text modal ──
+function prepText(t) {
+  _eTxtId = t ? t.id : null;
+  $id('mt-h').textContent = t ? 'Modifier le texte' : 'Nouveau texte';
+  $id('ft-title').value   = t ? t.title         : '';
+  $id('ft-author').value  = t ? t.author        : '';
+  $id('ft-text').value    = t ? t.text          : '';
+  $id('ft-accroche').value= t ? t.accroche      : '';
+  $id('ft-pb').value      = t ? t.problematique : '';
+  $id('ft-plan').value    = t ? (t.axes||[]).map(a=>a.title).join(' | ') : '';
+  $id('ft-conclu').value  = t ? t.conclusion    : '';
+}
+function saveText() {
+  try {
+    const title = val('ft-title');
+    if (!title) { toast('Le titre est obligatoire.'); return; }
+    if (_eTxtId) {
+      const t = DB.texts.find(x => x.id===_eTxtId);
+      if (t) {
+        t.title=title; t.author=val('ft-author'); t.accroche=val('ft-accroche');
+        t.problematique=val('ft-pb'); t.conclusion=val('ft-conclu');
+        const txt=val('ft-text'); if (txt) t.text=txt;
+        // Rebuild axes from plan field, preserving existing ids by title match
+        const planTitles = val('ft-plan').split('|').map(s=>s.trim()).filter(Boolean);
+        const oldAxes = t.axes || [];
+        t.axes = planTitles.map(title => {
+          const existing = oldAxes.find(a => a.title === title);
+          return existing || {id: uid(), title};
+        });
+      }
+    } else {
+      const txt = val('ft-text');
+      if (!txt) { toast('Le texte est obligatoire.'); return; }
+      const axes = val('ft-plan').split('|').map(s=>s.trim()).filter(Boolean).map(title=>({id:uid(),title}));
+      const t = norm({id:uid(),title,author:val('ft-author'),text:txt,
+        accroche:val('ft-accroche'),problematique:val('ft-pb'),conclusion:val('ft-conclu'),
+        axes, citations:[]});
+      DB.texts.push(t);
+      DB.curId = t.id;
+    }
+    closeModal('m-text');
+    renderAll(); renderSelector();
+  } catch(e) { console.error('saveText',e); toast('Erreur lors de l\'enregistrement.'); }
+}
+
+// ── Axe modal ──
+function prepAxe(axe) {
+  _eAxeId = axe ? axe.id : null;
+  $id('ma-h').textContent   = axe ? 'Modifier le mouvement' : 'Nouveau mouvement';
+  $id('fa-title').value     = axe ? axe.title : '';
+}
+function saveAxe() {
+  try {
+    const t = curText(); if (!t) return;
+    const title = val('fa-title');
+    if (!title) { toast('Titre obligatoire.'); return; }
+    if (_eAxeId) {
+      const a = t.axes.find(x => x.id===_eAxeId);
+      if (a) a.title = title;
+    } else {
+      t.axes.push({id:uid(), title});
+    }
+    $id('fa-title').value = '';
+    closeModal('m-axe');
+    renderAll();
+  } catch(e) { console.error('saveAxe',e); }
+}
+
+// ── Citation modal ──
+function prepCit(cit) {
+  _eCitId = cit ? cit.id : null;
+  $id('mc-h').textContent  = cit ? 'Modifier la citation' : 'Nouvelle citation';
+  $id('fc-proc').value     = cit ? cit.proc   : '';
+  $id('fc-interp').value   = cit ? cit.interp : '';
+  const list = $id('ext-list');
+  list.innerHTML = '';
+  const exs = cit ? (cit.extraits||[]) : [];
+  if (!exs.length) addExtField('');
+  else exs.forEach(e => addExtField(e));
+  // Axe select
+  const t   = curText();
+  const sel = $id('fc-axe');
+  sel.innerHTML = '<option value="">— aucun mouvement —</option>';
+  if (t) t.axes.forEach(a => {
+    const o = document.createElement('option');
+    o.value = a.id; o.textContent = a.title;
+    if (cit && cit.axeId===a.id) o.selected = true;
+    sel.appendChild(o);
+  });
+}
+function addExtField(v) {
+  const list = $id('ext-list');
+  const row  = document.createElement('div');
+  row.className = 'ext-row';
+  const ta  = document.createElement('textarea');
+  ta.rows = 2; ta.placeholder = 'Coller l\'extrait exact du texte…'; ta.value = v||'';
+  const del = document.createElement('button');
+  del.type='button'; del.className='ext-del'; del.textContent='✕';
+  del.onclick = () => { if (list.children.length>1) row.remove(); else ta.value=''; };
+  row.appendChild(ta); row.appendChild(del);
+  list.appendChild(row);
+  setTimeout(() => ta.focus(), 50);
+}
+function saveCitation() {
+  try {
+    const t = curText(); if (!t) return;
+    const proc   = val('fc-proc');
+    const interp = val('fc-interp');
+    const axeId  = $id('fc-axe').value || '';
+    const exs    = Array.from(document.querySelectorAll('#ext-list textarea'))
+                       .map(ta => ta.value.trim()).filter(Boolean);
+    if (!proc)    { toast('Le procédé est obligatoire.'); return; }
+    if (!exs.length){ toast('Au moins un extrait est obligatoire.'); return; }
+    if (_eCitId) {
+      const c = t.citations.find(x => x.id===_eCitId);
+      if (c) { c.proc=proc; c.interp=interp; c.axeId=axeId; c.extraits=exs; }
+    } else {
+      const cc = COLORS[t.citations.length % COLORS.length];
+      t.citations.push({id:uid(), proc, interp, axeId, extraits:exs, colorClass:cc});
+    }
+    closeModal('m-cit');
+    renderAll();
+  } catch(e) { console.error('saveCitation',e); toast('Erreur lors de l\'enregistrement.'); }
+}
+
+// ─── SELECTOR ──────────────────────────────────────────
+function renderSelector() {
+  const sel = $id('sel-text');
+  sel.innerHTML = '';
+  if (!DB.texts.length) { sel.innerHTML='<option value="">Aucun texte</option>'; return; }
+  DB.texts.forEach(t => {
+    const o = document.createElement('option');
+    o.value = t.id;
+    o.textContent = (t.title||'(sans titre)') + (t.author ? ` — ${t.author}` : '');
+    if (t.id===DB.curId) o.selected = true;
+    sel.appendChild(o);
+  });
+}
+$id('sel-text').addEventListener('change', e => { DB.curId=e.target.value; renderAll(); });
+
+// ─── RENDER ALL ────────────────────────────────────────
+function renderAll() {
+  activeId = null;
+  try { renderRead(); } catch(e) { console.error('renderRead',e); }
+  try { renderText(); } catch(e) { console.error('renderText',e); }
+  if ($id('tab-edit').classList.contains('on')) {
+    try { renderEdit(); } catch(e) { console.error('renderEdit',e); }
+  }
+}
+
+// ─── READ PANEL ────────────────────────────────────────
+function renderRead() {
+  const t = curText();
+  const list = $id('read-list');
+  if (!t) { list.innerHTML='<div class="empty-hint">Aucun texte chargé.<br>Crée un nouveau texte pour commencer.</div>'; return; }
+
+  let h = '';
+
+  // INTRO
+  h += '<div class="slabel">Introduction</div>';
+  h += '<div class="intro-card">';
+  if (t.accroche) h += `<h3>Accroche</h3><p style="margin-bottom:8px">${esc(t.accroche)}</p>`;
+  h += `<h3>Problématique</h3><p>${esc(t.problematique||'—')}</p>`;
+  if (t.axes && t.axes.length) {
+    h += '<h3 style="margin-top:8px">Plan</h3>';
+    t.axes.forEach((a,i) => { h += `<p style="margin-bottom:3px"><strong>${roman(i+1)}.</strong> ${esc(a.title)}</p>`; });
+  }
+  h += '</div>';
+
+  // AXES + CITATIONS
+  (t.axes||[]).forEach((ax,i) => {
+    h += `<div class="mv-hdr"><span class="mv-num">MOUVEMENT ${roman(i+1)}</span><span class="mv-name">${esc(ax.title)}</span></div>`;
+    t.citations.filter(c => c.axeId===ax.id).forEach(c => { h += citCard(c); });
+  });
+
+  // Orphans
+  const known = new Set((t.axes||[]).map(a=>a.id));
+  const orphs = (t.citations||[]).filter(c => !c.axeId || !known.has(c.axeId));
+  if (orphs.length) {
+    if (t.axes && t.axes.length) h += '<div class="slabel">Sans mouvement</div>';
+    orphs.forEach(c => { h += citCard(c); });
+  }
+
+  // CONCLUSION
+  h += '<div class="slabel">Conclusion</div>';
+  h += `<div class="conclu-card"><h3>Bilan</h3><p>${esc(t.conclusion||'—')}</p></div>`;
+
+  list.innerHTML = h;
+  list.querySelectorAll('.cit-card').forEach(card => {
+    card.addEventListener('click', () => toggleMark(card.dataset.id));
+  });
+}
+
+function citCard(c) {
+  const exs = (c.extraits&&c.extraits.length) ? c.extraits : (c.cit?[c.cit]:[]);
+  return `<div class="cit-card" data-id="${esc(c.id)}">
+    <div class="cdot" style="background:${COLOR_HEX[c.colorClass]||'#888'}"></div>
+    <div class="proc">${esc(c.proc)}</div>
+    ${exs.map(e=>`<div class="cit-item">« ${esc(e)} »</div>`).join('')}
+    ${c.interp?`<div class="interp">${esc(c.interp)}</div>`:''}
+  </div>`;
+}
+
+// ─── TEXT PANEL ────────────────────────────────────────
+function renderText() {
+  const t = curText();
+  $id('disp-title').textContent  = t ? t.title  : '—';
+  $id('disp-author').textContent = t ? t.author : '';
+  if (!t) { $id('text-display').innerHTML=''; nodeMap=[]; return; }
+
+  const raw = t.text||'';
+
+  // 1. Collect all (start, end, citId) segments — overlaps allowed
+  let segs = [];
+  (t.citations||[]).forEach(c => {
+    const exs = (c.extraits&&c.extraits.length)?c.extraits:(c.cit?[c.cit]:[]);
+    exs.forEach(ex => {
+      if (!ex) return;
+      let i=0;
+      while (true) {
+        const p = raw.indexOf(ex,i);
+        if (p===-1) break;
+        segs.push({start:p, end:p+ex.length, citId:c.id, cc:c.colorClass});
+        i = p + ex.length;
+      }
+    });
+  });
+
+  // 2. Build a flat list of "boundary" points to split text into atomic chunks
+  //    Each chunk knows which citIds cover it
+  if (!segs.length) {
+    nodeMap = [{type:'t', text:raw}];
+    applyDisplay(null);
+    return;
+  }
+
+  // Collect all boundary positions
+  const boundaries = new Set([0, raw.length]);
+  segs.forEach(s => { boundaries.add(s.start); boundaries.add(s.end); });
+  const points = Array.from(boundaries).sort((a,b)=>a-b);
+
+  // For each chunk between consecutive points, find which citIds cover it
+  nodeMap = [];
+  for (let i=0; i<points.length-1; i++) {
+    const from = points[i], to = points[i+1];
+    const covering = segs.filter(s => s.start<=from && s.end>=to);
+    const text = raw.slice(from, to);
+    if (!covering.length) {
+      nodeMap.push({type:'t', text});
+    } else {
+      // Store all covering citIds; use the first one's color as base
+      nodeMap.push({
+        type:'m',
+        text,
+        citIds: covering.map(s=>s.citId),
+        ccs:    covering.map(s=>s.cc)
+      });
+    }
+  }
+  applyDisplay(null);
+}
+
+function applyDisplay(aid) {
+  let h='';
+  for (const n of nodeMap) {
+    if (n.type==='t') {
+      h += escH(n.text);
+    } else {
+      const isActive = aid && n.citIds.includes(aid);
+      // Pick the color of the active cit, or the first one if none active
+      const cc = isActive ? n.ccs[n.citIds.indexOf(aid)] : n.ccs[0];
+      const ids = n.citIds.join(' ');
+      if (isActive) {
+        h += `<mark class="${cc} on" data-ids="${ids}">${escH(n.text)}</mark>`;
+      } else {
+        h += `<span class="mark-latent" data-ids="${ids}">${escH(n.text)}</span>`;
+      }
+    }
+  }
+  $id('text-display').innerHTML = h.replace(/\n/g,'<br>');
+}
+
+function toggleMark(id) {
+  document.querySelectorAll('.cit-card.active').forEach(el=>el.classList.remove('active'));
+  if (activeId===id) { activeId=null; applyDisplay(null); return; }
+  activeId=id;
+  const card=document.querySelector(`.cit-card[data-id="${id}"]`);
+  if (card) card.classList.add('active');
+  applyDisplay(id);
+  // Scroll to first highlighted mark (data-ids contains the id)
+  const first=document.querySelector(`#text-display mark.on`);
+  if (first) first.scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+// ─── EDIT PANEL ────────────────────────────────────────
+function renderEdit() {
+  const wrap = $id('edit-wrap');
+  const t = curText();
+  if (!t) { wrap.innerHTML='<p style="font-size:0.8rem;color:var(--muted);font-style:italic;">Sélectionnez ou créez un texte.</p>'; return; }
+  wrap.innerHTML='';
+
+  // Header
+  const hdr = mk('div','',{style:'display:flex;justify-content:space-between;align-items:center;margin-bottom:2px;'});
+  hdr.appendChild(mk('span',t.title||'(sans titre)',{style:'font-family:\'IBM Plex Mono\',monospace;font-size:0.68rem;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;'}));
+  const eb = mk('button','✏ modifier le texte',{style:'font-family:\'IBM Plex Mono\',monospace;font-size:0.65rem;',className:'iBtn'});
+  eb.onclick = () => openModal('m-text',t);
+  hdr.appendChild(eb);
+  wrap.appendChild(hdr);
+
+  // ── AXES
+  wrap.appendChild(mkSec('Mouvements'));
+  (t.axes||[]).forEach((ax,i) => {
+    const row = mkRow();
+    const rl = mk('div','',{className:'erow-l'});
+    rl.appendChild(mk('div',`MOUVEMENT ${roman(i+1)}`,{style:'font-family:\'IBM Plex Mono\',monospace;font-size:0.63rem;color:var(--muted);'}));
+    rl.appendChild(mk('div',ax.title,{style:'font-family:\'Playfair Display\',serif;font-style:italic;font-size:0.82rem;margin-top:2px;'}));
+    const acts = mk('div','',{className:'erow-acts'});
+    const editB = mk('button','✏',{className:'iBtn',title:'Modifier'}); editB.onclick=()=>openModal('m-axe',ax);
+    const delB  = mk('button','✕',{className:'iBtn del',title:'Supprimer'});
+    delB.onclick=()=>{ if(!confirm(`Supprimer "${ax.title}" ?`))return; t.axes=t.axes.filter(a=>a.id!==ax.id); renderAll(); };
+    acts.appendChild(editB); acts.appendChild(delB);
+    row.appendChild(rl); row.appendChild(acts);
+    wrap.appendChild(row);
+  });
+  const addAx = mk('button','＋ Ajouter un mouvement',{className:'add-dashed'});
+  addAx.onclick = ()=>openModal('m-axe',null);
+  wrap.appendChild(addAx);
+
+  // ── CITATIONS
+  wrap.appendChild(mkSec('Citations'));
+  (t.citations||[]).forEach(c => {
+    const exs = (c.extraits&&c.extraits.length)?c.extraits:(c.cit?[c.cit]:[]);
+    const row = mkRow();
+    row.style.borderLeft = `3px solid ${COLOR_HEX[c.colorClass]||'#888'}`;
+    const rl = mk('div','',{className:'erow-l'});
+    rl.appendChild(mk('div',c.proc,{style:'font-family:\'IBM Plex Mono\',monospace;font-size:0.63rem;color:var(--accent);text-transform:uppercase;'}));
+    const preview = mk('div',`« ${exs[0]||''} »${exs.length>1?` +${exs.length-1}`:''}`,{style:'font-family:\'Playfair Display\',serif;font-style:italic;font-size:0.76rem;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;'});
+    rl.appendChild(preview);
+    const acts = mk('div','',{className:'erow-acts'});
+    const editB = mk('button','✏',{className:'iBtn',title:'Modifier'}); editB.onclick=()=>openModal('m-cit',c);
+    const delB  = mk('button','✕',{className:'iBtn del',title:'Supprimer'});
+    delB.onclick=()=>{ if(!confirm('Supprimer cette citation ?'))return; t.citations=t.citations.filter(x=>x.id!==c.id); renderAll(); };
+    acts.appendChild(editB); acts.appendChild(delB);
+    row.appendChild(rl); row.appendChild(acts);
+    wrap.appendChild(row);
+  });
+  const addCit = mk('button','＋ Ajouter une citation',{className:'add-dashed'});
+  addCit.onclick = ()=>openModal('m-cit',null);
+  wrap.appendChild(addCit);
+}
+
+// DOM helpers
+function mk(tag, text, props={}) {
+  const el = document.createElement(tag);
+  if (text) el.textContent = text;
+  Object.entries(props).forEach(([k,v]) => {
+    if (k==='className') el.className=v;
+    else if (k==='style') el.style.cssText=v;
+    else el.setAttribute(k,v);
+  });
+  return el;
+}
+function mkRow() { const r=mk('div','',{className:'erow'}); return r; }
+function mkSec(label) { return mk('div',label,{className:'esec'}); }
+
+// ─── TABS ──────────────────────────────────────────────
+function switchTab(tab) {
+  $id('tab-lire').classList.toggle('on', tab==='lire');
+  $id('tab-edit').classList.toggle('on', tab==='edit');
+  $id('read-list').style.display = tab==='lire' ? '' : 'none';
+  const ew = $id('edit-wrap');
+  ew.style.display = tab==='edit' ? 'flex' : 'none';
+  if (tab==='edit') renderEdit();
+}
+
+// ─── EXPORT ────────────────────────────────────────────
+function doExport() {
+  try {
+    DB.curId = DB.curId; // keep current
+    const json = JSON.stringify(DB);
+    let html = document.documentElement.outerHTML;
+    // Replace content inside our data script tag
+    html = html.replace(
+      /(<script\s+id="__db__"[^>]*>)([\s\S]*?)(<\/script>)/,
+      (m,open,_,close) => `${open}window.__DB__=${json};${close}`
+    );
+    const blob = new Blob([html],{type:'text/html;charset=utf-8'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'fiches-bac.html';
+    a.click();
+    setTimeout(()=>URL.revokeObjectURL(a.href),5000);
+    toast('✓ Fichier exporté !');
+  } catch(e) { console.error('Export:',e); toast('Erreur export.'); }
+}
+
+// ─── TOAST ─────────────────────────────────────────────
+let _tt=null;
+function toast(msg) {
+  const el=$id('toast'); el.textContent=msg; el.style.display='block';
+  if (_tt) clearTimeout(_tt);
+  _tt=setTimeout(()=>el.style.display='none',2800);
+}
+
+// ─── PRINT ─────────────────────────────────────────────
+function doPrint() {
+  const t = curText();
+  if (!t) { toast('Aucun texte sélectionné.'); return; }
+
+  function pEsc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+  function buildCits(cits) {
+    if (!cits.length) return `<div class="p-empty">Aucune citation.</div>`;
+    return cits.map(c => {
+      const exs = (c.extraits&&c.extraits.length)?c.extraits:(c.cit?[c.cit]:[]);
+      return `<div class="p-cit">
+        <div class="p-proc">${pEsc(c.proc)}</div>
+        ${exs.map(e=>`<div class="p-quote">« ${pEsc(e)} »</div>`).join('')}
+        ${c.interp?`<div class="p-interp">${pEsc(c.interp)}</div>`:''}
+      </div>`;
+    }).join('');
+  }
+
+  let body_mouvements = '';
+  (t.axes||[]).forEach((ax,i) => {
+    const cits = (t.citations||[]).filter(c => c.axeId===ax.id);
+    body_mouvements += `<div class="p-mv"><span class="p-mv-num">MOUVEMENT ${roman(i+1)}</span><span class="p-mv-name">${pEsc(ax.title)}</span></div>`;
+    body_mouvements += buildCits(cits);
+  });
+  const known = new Set((t.axes||[]).map(a=>a.id));
+  const orphs = (t.citations||[]).filter(c => !c.axeId || !known.has(c.axeId));
+  if (orphs.length) {
+    body_mouvements += `<div class="p-mv"><span class="p-mv-num">SANS MOUVEMENT</span></div>`;
+    body_mouvements += buildCits(orphs);
+  }
+
+  const html = `<!DOCTYPE html><html lang="fr"><head>
+<meta charset="UTF-8">
+<title>Fiche — ${pEsc(t.title)}</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'IBM Plex Sans', sans-serif; background: #fff; color: #1a1410; padding: 16mm 18mm 14mm; font-size: 9.5pt; line-height: 1.5; }
+
+  /* HEADER */
+  .p-head { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 2.5px solid #1a1410; padding-bottom: 6px; margin-bottom: 12px; }
+  .p-head-left {}
+  .p-title { font-family: 'Playfair Display', serif; font-size: 17pt; font-weight: 700; font-style: italic; line-height: 1.1; }
+  .p-author { font-family: 'IBM Plex Mono', monospace; font-size: 8pt; color: #7a6f60; margin-top: 3px; }
+  .p-head-right { text-align: right; font-family: 'IBM Plex Mono', monospace; font-size: 7pt; color: #7a6f60; line-height: 1.6; }
+
+  /* INTRO BLOCK */
+  .p-intro { display: grid; grid-template-columns: 88px 1fr; gap: 0; border: 1px solid #d4cdc0; border-radius: 3px; margin-bottom: 10px; overflow: hidden; }
+  .p-intro-row { display: contents; }
+  .p-intro-row > .p-lbl { background: #f5f0e8; border-right: 1px solid #d4cdc0; padding: 6px 8px; font-family: 'IBM Plex Mono', monospace; font-size: 6.5pt; font-weight: 500; text-transform: uppercase; letter-spacing: 0.07em; color: #8b2e00; display: flex; align-items: flex-start; line-height: 1.4; }
+  .p-intro-row > .p-val { padding: 6px 10px; font-size: 9pt; line-height: 1.5; border-top: 1px solid #eee; }
+  .p-intro-row:first-child > .p-val { border-top: none; }
+  .p-intro-row:first-child > .p-lbl { border-top: none; }
+  .p-plan-items { display: flex; gap: 6px; flex-wrap: wrap; }
+  .p-plan-tag { background: #1a1410; color: #fff; font-family: 'IBM Plex Mono', monospace; font-size: 6.5pt; padding: 2px 7px; border-radius: 2px; white-space: nowrap; }
+
+  /* MOUVEMENT HEADER */
+  .p-mv { background: #1a1410; color: #fff; padding: 4px 10px; margin: 10px 0 5px; border-radius: 2px; display: flex; align-items: baseline; gap: 8px; }
+  .p-mv-num { font-family: 'IBM Plex Mono', monospace; font-size: 6.5pt; color: #c0a080; letter-spacing: 0.1em; flex-shrink: 0; }
+  .p-mv-name { font-family: 'Playfair Display', serif; font-size: 10pt; font-style: italic; }
+
+  /* CITATION */
+  .p-cit { border: 1px solid #d4cdc0; border-radius: 3px; padding: 6px 9px; margin-bottom: 4px; page-break-inside: avoid; display: grid; grid-template-columns: 1fr; gap: 3px; }
+  .p-proc { font-family: 'IBM Plex Mono', monospace; font-size: 6.5pt; font-weight: 500; color: #8b2e00; text-transform: uppercase; letter-spacing: 0.07em; }
+  .p-quote { font-family: 'Playfair Display', serif; font-style: italic; font-size: 9pt; color: #3a3330; line-height: 1.4; }
+  .p-interp { font-size: 8.5pt; color: #1a1410; padding: 4px 8px; background: #f0ebe0; border-left: 2.5px solid #8b2e00; line-height: 1.45; margin-top: 1px; }
+
+  /* CONCLUSION */
+  .p-conclu { border: 1px solid #d4cdc0; border-left: 3.5px solid #8b2e00; border-radius: 0 3px 3px 0; padding: 7px 10px; margin-top: 10px; font-size: 9pt; line-height: 1.5; }
+  .p-empty { font-style: italic; color: #7a6f60; font-size: 8.5pt; padding: 3px 2px; }
+
+  /* PRINT BAR (hidden on print) */
+  .no-print { margin-bottom: 14px; display: flex; gap: 8px; align-items: center; }
+  .no-print button { font-family: 'IBM Plex Mono', monospace; font-size: 8.5pt; padding: 6px 15px; border: none; border-radius: 3px; cursor: pointer; }
+  .no-print .btn-p { background: #8b2e00; color: #fff; }
+  .no-print .btn-p:hover { background: #a03500; }
+  .no-print .btn-s { background: #f5f0e8; color: #1a1410; border: 1px solid #d4cdc0; }
+  .no-print .tip { font-family: 'IBM Plex Mono', monospace; font-size: 7pt; color: #7a6f60; }
+
+  @media print {
+    .no-print { display: none !important; }
+    body { padding: 10mm 14mm; }
+    .p-cit { page-break-inside: avoid; }
+    .p-mv { page-break-after: avoid; }
+  }
+</style>
+</head><body>
+
+<div class="no-print">
+  <button class="btn-p" onclick="window.print()">🖨 Imprimer / PDF</button>
+  <button class="btn-s" onclick="window.close()">✕ Fermer</button>
+  <span class="tip">Conseil : dans la boîte d'impression, choisir "Enregistrer en PDF" pour garder une version numérique.</span>
+</div>
+
+<div class="p-head">
+  <div class="p-head-left">
+    <div class="p-title">${pEsc(t.title)}</div>
+    ${t.author ? `<div class="p-author">${pEsc(t.author)}</div>` : ''}
+  </div>
+  <div class="p-head-right">Bac Français<br>Fiche de révision</div>
+</div>
+
+<div class="p-intro">
+  ${t.accroche ? `<div class="p-intro-row"><div class="p-lbl">Accroche</div><div class="p-val">${pEsc(t.accroche)}</div></div>` : ''}
+  <div class="p-intro-row"><div class="p-lbl">Problématique</div><div class="p-val">${pEsc(t.problematique||'—')}</div></div>
+  ${t.axes && t.axes.length ? `<div class="p-intro-row"><div class="p-lbl">Plan</div><div class="p-val"><div class="p-plan-items">${t.axes.map((a,i)=>`<span class="p-plan-tag">${roman(i+1)}. ${pEsc(a.title)}</span>`).join('')}</div></div></div>` : ''}
+</div>
+
+${body_mouvements}
+
+${t.conclusion ? `<div class="p-conclu"><strong>Conclusion :</strong> ${pEsc(t.conclusion)}</div>` : ''}
+
+</body></html>`;
+
+  const win = window.open('', '_blank');
+  if (!win) { toast('Autorisez les popups pour imprimer.'); return; }
+  win.document.write(html);
+  win.document.close();
+}
+(function boot() {
+  try {
+    if (window.__DB__ && typeof window.__DB__==='object') {
+      const raw = window.__DB__;
+      DB.texts = Array.isArray(raw.texts) ? raw.texts.map(norm).filter(Boolean) : [];
+      DB.curId  = raw.curId||raw.currentTextId||(DB.texts[0]?DB.texts[0].id:null);
+    }
+  } catch(e) { console.error('Boot load error:',e); }
+  renderSelector();
+  renderAll();
+})();
+</script>
+
+
+</body></html>
